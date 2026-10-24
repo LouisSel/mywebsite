@@ -92,9 +92,12 @@ ul {
 }
 
 .nav-links {
+  flex: 1;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 28px;
+  margin-left: 64px;
 }
 
 .nav-links a {
@@ -477,6 +480,7 @@ ul {
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
+    margin-left: 0;
     padding: 8px 16px 20px;
     background: var(--bg);
     border-bottom: 1px solid var(--border);
