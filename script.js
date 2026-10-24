@@ -138,7 +138,17 @@ function renderStop(stop, placeNumber) {
         .map((photo) => `<img src="${escapeHtml(photo.src)}" alt="${escapeHtml(photo.alt || "")}" loading="lazy">`)
         .join("")}</div>`
     : "";
-  return `<li data-place="${placeNumber}" tabindex="0"><h3>${escapeHtml(stop.name)}</h3>${note}${photos}</li>`;
+  return `<li data-place="${placeNumber}" tabindex="0"><h4>${escapeHtml(stop.name)}</h4>${note}${photos}</li>`;
+}
+
+// One flag, or for a trip through two countries (e.g. ["no", "dk"]) both
+// flags in one, split diagonally
+function flagHtml(flag) {
+  const image = (code) => `<img src="https://flagcdn.com/${escapeHtml(code)}.svg" alt="" width="36" height="27">`;
+  if (Array.isArray(flag)) {
+    return `<span class="flag flag-multi">${flag.slice(0, 2).map(image).join("")}</span>`;
+  }
+  return image(flag).replace("<img ", '<img class="flag" ');
 }
 
 function renderHoliday(holiday) {
@@ -149,9 +159,8 @@ function renderHoliday(holiday) {
   details.className = "holiday";
   details.innerHTML = `
     <summary>
-      <img class="flag" src="https://flagcdn.com/${escapeHtml(holiday.flag)}.svg" alt="" width="36" height="27">
+      ${flagHtml(holiday.flag)}
       <span class="holiday-country">${escapeHtml(holiday.country)}</span>
-      <span class="holiday-meta">${escapeHtml(holiday.year)}</span>
       <span class="chevron" aria-hidden="true"></span>
     </summary>
     <div class="holiday-body">
@@ -182,12 +191,26 @@ function yearOf(holiday) {
 }
 
 if (holidayList && typeof holidays !== "undefined") {
-  [...holidays]
-    .sort((a, b) => {
-      if (!yearOf(a) || !yearOf(b)) return yearOf(b) ? 1 : yearOf(a) ? -1 : 0;
-      return NEWEST_FIRST ? yearOf(b) - yearOf(a) : yearOf(a) - yearOf(b);
-    })
-    .forEach((holiday) => holidayList.append(renderHoliday(holiday)));
+  const sorted = [...holidays].sort((a, b) => {
+    if (!yearOf(a) || !yearOf(b)) return yearOf(b) ? 1 : yearOf(a) ? -1 : 0;
+    return NEWEST_FIRST ? yearOf(b) - yearOf(a) : yearOf(a) - yearOf(b);
+  });
+
+  // One heading per year, with that year's holidays underneath
+  let currentYear = null;
+  let group = null;
+  sorted.forEach((holiday) => {
+    const year = yearOf(holiday) ? String(yearOf(holiday)) : "Other";
+    if (year !== currentYear) {
+      currentYear = year;
+      const section = document.createElement("section");
+      section.className = "holiday-year";
+      section.innerHTML = `<h3 class="holiday-year-title">${escapeHtml(year)}</h3><div class="holidays"></div>`;
+      holidayList.append(section);
+      group = section.querySelector(".holidays");
+    }
+    group.append(renderHoliday(holiday));
+  });
 }
 
 // ========== Travel: route maps ==========
@@ -254,6 +277,32 @@ function routeMapStyle(routeCoords, places, icons) {
     },
     layers: [
       { id: "background", type: "background", paint: { "background-color": "#000000" } },
+      // Coastlines: the outline of the sea and of large lakes
+      {
+        id: "coastline",
+        type: "line",
+        source: "openfreemap",
+        "source-layer": "water",
+        filter: ["in", ["get", "class"], ["literal", ["ocean", "lake"]]],
+        paint: {
+          "line-color": "#8a8f98",
+          "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.6, 10, 1.2],
+        },
+      },
+      // Country borders on land (not the sea borders), dashed
+      {
+        id: "borders",
+        type: "line",
+        source: "openfreemap",
+        "source-layer": "boundary",
+        filter: ["all", ["==", ["get", "admin_level"], 2], ["!=", ["get", "maritime"], 1]],
+        layout: { "line-join": "round" },
+        paint: {
+          "line-color": "#8a8f98",
+          "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.8, 10, 1.5],
+          "line-dasharray": [3, 2],
+        },
+      },
       // Smallest roads first, so the bigger roads are drawn on top
       roadLayer("roads-minor", ["minor", "service"], 12, [12, 0.4, 14, 1, 16, 2.5], 0.5),
       roadLayer("roads-secondary", ["secondary", "tertiary"], 9, [9, 0.4, 12, 1, 16, 3], 0.7),
@@ -354,7 +403,7 @@ function halfway(path) {
 }
 
 // Icons on the line: a plane halfway along each flight (pointing the way
-// it flew) and a train halfway along each train ride
+// it flew), and a train or boat halfway along each train or boat ride
 function travelIcons(holiday) {
   const legs = (typeof roadPaths !== "undefined" && roadPaths[holiday.id]) || [];
   const features = [];
@@ -373,15 +422,17 @@ function travelIcons(holiday) {
   return { type: "FeatureCollection", features };
 }
 
-// Material Design icons ("flight" and "train"), on a 24×24 grid
+// Material Design icons ("flight", "train" and "directions_boat"), on a 24×24 grid
 const TRAVEL_ICONS = {
   plane: "M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z",
   train:
     "M12 2c-4 0-8 .5-8 4v9.5C4 17.43 5.57 19 7.5 19L6 20.5v.5h2.23l2-2H14l2 2h2v-.5L16.5 19c1.93 0 3.5-1.57 3.5-3.5V6c0-3.5-3.58-4-8-4zM7.5 17c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm3.5-7H6V6h5v4zm2 0V6h5v4h-5zm3.5 7c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z",
+  boat:
+    "M20 21c-1.39 0-2.78-.47-4-1.32-2.44 1.71-5.56 1.71-8 0C6.78 20.53 5.39 21 4 21H2v2h2c1.38 0 2.74-.35 4-.99 2.52 1.29 5.48 1.29 8 0 1.26.65 2.62.99 4 .99h2v-2h-2zM3.95 19H4c1.6 0 3.02-.88 4-2 .98 1.12 2.4 2 4 2s3.02-.88 4-2c.98 1.12 2.4 2 4 2h.05l1.89-6.68c.08-.26.06-.54-.06-.78s-.34-.42-.6-.5L20 10.62V6c0-1.1-.9-2-2-2h-3V1H9v3H6c-1.1 0-2 .9-2 2v4.62l-1.29.42c-.26.08-.48.26-.6.5s-.15.52-.06.78L3.95 19zM6 6h12v3.97L12 8 6 9.97V6z",
 };
 
-// Draws a travel icon white with a black outline, at twice its on-screen
-// size so it stays sharp
+// Draws a travel icon (plane, train or boat) white with a black outline,
+// at twice its on-screen size so it stays sharp
 function travelIconImage(name) {
   const size = 48;
   const canvas = document.createElement("canvas");

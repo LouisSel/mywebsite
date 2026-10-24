@@ -7,6 +7,10 @@
   --border: #e7e5e4;
   --accent: #4f46e5;
   --accent-soft: #eef2ff;
+  --done: #15803d;
+  --done-soft: #dcfce7;
+  --planned: #a16207;
+  --planned-soft: #fef9c3;
   --radius: 14px;
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
   --max-width: 1040px;
@@ -20,6 +24,10 @@
   --border: #292524;
   --accent: #818cf8;
   --accent-soft: #1e1b4b;
+  --done: #4ade80;
+  --done-soft: #052e16;
+  --planned: #facc15;
+  --planned-soft: #422006;
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
@@ -221,6 +229,47 @@ ul {
   margin: 0;
 }
 
+/* Travel page: the Tambopata photo fills the window behind everything and
+   stays put while scrolling; the content sits in see-through boxes so the
+   photo shows clearly at the sides and faintly behind the text */
+.travel-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: url("images/tambopata.jpg") center 60% / cover no-repeat;
+}
+
+.travel-page .panel {
+  width: calc(100% - 32px);
+  margin: 32px auto;
+  padding: 48px 40px;
+  border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--bg) 72%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.travel-page .holiday,
+.travel-page .chips li {
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+}
+
+.travel-page .site-footer {
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+@media (max-width: 760px) {
+  .travel-page .panel {
+    width: calc(100% - 16px);
+    margin: 16px auto;
+    padding: 32px 20px;
+  }
+}
+
 /* ========== Buttons ========== */
 .btn {
   display: inline-block;
@@ -342,6 +391,17 @@ ul {
   margin-bottom: 16px;
 }
 
+/* Project status: "In progress" uses the default blue above */
+.card-tag.done {
+  color: var(--done);
+  background: var(--done-soft);
+}
+
+.card-tag.planned {
+  color: var(--planned);
+  background: var(--planned-soft);
+}
+
 .card h3 {
   margin: 0 0 8px;
   font-size: 1.2rem;
@@ -373,7 +433,20 @@ ul {
   color: var(--accent);
 }
 
-/* Travel: holiday list */
+/* Travel: holiday list, grouped by year */
+.holiday-years {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.holiday-year-title {
+  margin: 0 0 14px;
+  font-size: 1.3rem;
+  letter-spacing: -0.02em;
+  color: var(--muted);
+}
+
 .holidays {
   display: flex;
   flex-direction: column;
@@ -417,16 +490,29 @@ ul {
   flex-shrink: 0;
 }
 
+/* Two flags in one, split diagonally: the second covers the bottom-right half */
+.flag-multi {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.flag-multi img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.flag-multi img + img {
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
 .holiday-country {
   font-size: 1.15rem;
   font-weight: 600;
   transition: color 0.2s;
-}
-
-.holiday-meta {
-  color: var(--muted);
-  font-size: 0.9rem;
-  margin-left: auto;
 }
 
 .chevron {
@@ -436,7 +522,7 @@ ul {
   border-bottom: 2px solid var(--muted);
   transform: rotate(45deg);
   transition: transform 0.25s;
-  margin: 0 4px 4px 4px;
+  margin: 0 4px 4px auto;
 }
 
 .holiday[open] .chevron {
@@ -532,7 +618,7 @@ ul {
   transform: scale(1.4);
 }
 
-.locations li.is-active h3 {
+.locations li.is-active h4 {
   color: var(--accent);
 }
 
@@ -566,7 +652,7 @@ ul {
   padding-bottom: 0;
 }
 
-.locations h3 {
+.locations h4 {
   margin: 0 0 4px;
   font-size: 1.05rem;
   transition: color 0.2s;
