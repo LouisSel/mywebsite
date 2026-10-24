@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal website of Your Name — short tagline goes here.">
+  <title>Your Name</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="#top" class="logo">YN</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li>
+          <button class="theme-toggle" aria-label="Toggle dark mode">
+            <span class="icon-sun">☀</span><span class="icon-moon">☾</span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero container">
+      <p class="eyebrow">Hi, I'm</p>
+      <h1>Your Name</h1>
+      <p class="tagline">Role / title — a one-line description of what you do and what you care about.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">See my work</a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section container reveal">
+      <h2 class="section-title">About me</h2>
+      <div class="about-grid">
+        <div class="about-photo" aria-hidden="true">
+          <!-- Replace with: <img src="images/me.jpg" alt="Your Name"> -->
+          <span>YN</span>
+        </div>
+        <div class="about-text">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Write a short
+            introduction here: who you are, where you're based, and what you're working on.
+          </p>
+          <p>
+            Add a second paragraph about your background, what drives you, or what you're
+            currently learning. Keep it friendly and concise.
+          </p>
+          <p>
+            Optionally, a line about your interests outside of work — hobbies, books, sports, etc.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section container reveal">
+      <h2 class="section-title">Current projects</h2>
+      <div class="cards">
+        <article class="card">
+          <span class="card-tag">In progress</span>
+          <h3>Project One</h3>
+          <p>A short description of the project: what it is, the problem it solves, and your role in it.</p>
+          <ul class="card-tech">
+            <li>HTML</li><li>CSS</li><li>JavaScript</li>
+          </ul>
+          <a href="#" class="card-link">View project →</a>
+        </article>
+        <article class="card">
+          <span class="card-tag">In progress</span>
+          <h3>Project Two</h3>
+          <p>A short description of the project: what it is, the problem it solves, and your role in it.</p>
+          <ul class="card-tech">
+            <li>Tool</li><li>Language</li>
+          </ul>
+          <a href="#" class="card-link">View project →</a>
+        </article>
+        <article class="card">
+          <span class="card-tag">Planned</span>
+          <h3>Project Three</h3>
+          <p>A short description of the project: what it is, the problem it solves, and your role in it.</p>
+          <ul class="card-tech">
+            <li>Tool</li><li>Framework</li>
+          </ul>
+          <a href="#" class="card-link">View project →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section container reveal">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h3>Category One</h3>
+          <ul class="chips">
+            <li>Skill</li><li>Skill</li><li>Skill</li><li>Skill</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Category Two</h3>
+          <ul class="chips">
+            <li>Skill</li><li>Skill</li><li>Skill</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Category Three</h3>
+          <ul class="chips">
+            <li>Skill</li><li>Skill</li><li>Skill</li><li>Skill</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section container reveal">
+      <h2 class="section-title">Contact</h2>
+      <div class="contact-grid">
+        <div>
+          <p class="contact-intro">
+            Want to work together or just say hi? Write a short invitation here and
+            let people know the best way to reach you.
+          </p>
+          <ul class="contact-links">
+            <li><a href="mailto:you@example.com">you@example.com</a></li>
+            <li><a href="https://github.com/your-username" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener">LinkedIn</a></li>
+          </ul>
+        </div>
+        <form class="contact-form" id="contact-form">
+          <label>
+            Name
+            <input type="text" name="name" required>
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" required>
+          </label>
+          <label>
+            Message
+            <textarea name="message" rows="5" required></textarea>
+          </label>
+          <button type="submit" class="btn btn-primary">Send message</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Your Name. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
