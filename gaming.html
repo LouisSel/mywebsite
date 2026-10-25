@@ -36,17 +36,15 @@
   <main id="top">
     <!-- Page intro -->
     <section class="page-intro container">
-      <p class="eyebrow">Video games</p>
-      <h1>My gaming setup</h1>
-      <p class="tagline">
-        When I'm not off somewhere around the world, you'll probably find me at home in front
-        of this setup. Here's what's inside my PC, what's on my desk and what I like to play.
-      </p>
+      <p class="eyebrow">Chill corner</p>
+      <div class="tabs" role="tablist" aria-label="Chill corner">
+        <button type="button" class="tab" role="tab" id="tab-setup" aria-controls="setup" aria-selected="true">My setup</button>
+        <button type="button" class="tab" role="tab" id="tab-games" aria-controls="games" aria-selected="false" tabindex="-1">Favourite games</button>
+      </div>
     </section>
 
-    <!-- Setup: the desk, and the PC once it's clicked. Everything is listed in gaming-data.js -->
-    <section id="setup" class="section container reveal">
-      <h2 class="section-title">My setup</h2>
+    <!-- Setup tab: the desk, and the PC once it's clicked. Everything is listed in gaming-data.js -->
+    <section id="setup" class="tab-panel container" role="tabpanel" aria-labelledby="tab-setup">
       <div class="pc-panel" id="setup-panel">
         <button type="button" class="btn btn-ghost diagram-back" id="diagram-back">← Back to the desk</button>
         <div class="diagram-stage">
@@ -1051,9 +1049,8 @@
       </div>
     </section>
 
-    <!-- Favourite games -->
-    <section id="games" class="section container reveal">
-      <h2 class="section-title">Favourite games</h2>
+    <!-- Favourite games tab: listed in gaming-data.js, click a game to open it -->
+    <section id="games" class="tab-panel container" role="tabpanel" aria-labelledby="tab-games" hidden>
       <div class="games" id="game-list"></div>
     </section>
   </main>

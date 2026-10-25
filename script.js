@@ -272,16 +272,90 @@ if (setupPanel && typeof setup !== "undefined" && typeof pcParts !== "undefined"
   });
 }
 
+// Favourite games: one card each, opening to show the details
 const gameList = document.getElementById("game-list");
+const GAME_FACTS = [
+  ["genre", "Genre"],
+  ["platform", "Platform"],
+  ["hours", "Hours played"],
+  ["lastPlayed", "Last played"],
+  ["since", "Playing since"],
+];
+
+function renderGame(game) {
+  const facts = GAME_FACTS
+    .filter(([key]) => game[key])
+    .map(([key, label]) => `<div><dt>${label}</dt><dd>${escapeHtml(game[key])}</dd></div>`)
+    .join("");
+  const details = [
+    facts ? `<dl class="game-facts">${facts}</dl>` : "",
+    game.about ? `<p class="game-about">${escapeHtml(game.about)}</p>` : "",
+    game.link
+      ? `<a class="game-link" href="${escapeHtml(game.link)}" target="_blank" rel="noopener">${
+          game.link.includes("steampowered.com") ? "View on Steam" : "Visit website"} ↗</a>`
+      : "",
+  ].join("");
+  // The cover doubles as the little picture on the card; without one, the first letter stands in
+  const badge = game.cover
+    ? `<img class="game-badge" src="${escapeHtml(game.cover)}" alt="" loading="lazy">`
+    : `<span class="game-badge" aria-hidden="true">${escapeHtml(game.title.charAt(0))}</span>`;
+
+  return `
+    <details class="game">
+      <summary>
+        ${badge}
+        <span class="game-heading">
+          <span class="game-title">${escapeHtml(game.title)}</span>
+          ${game.note ? `<span class="game-note">${escapeHtml(game.note)}</span>` : ""}
+        </span>
+        <span class="chevron" aria-hidden="true"></span>
+      </summary>
+      <div class="game-body">
+        ${game.cover ? `<img class="game-cover" src="${escapeHtml(game.cover)}" alt="${escapeHtml(game.title)}" loading="lazy">` : ""}
+        <div class="game-info">${details || '<p class="game-about">More about this game coming soon.</p>'}</div>
+      </div>
+    </details>`;
+}
 
 if (gameList && typeof favouriteGames !== "undefined") {
-  gameList.innerHTML = favouriteGames
-    .map((game) => `
-      <article class="game">
-        <h3>${escapeHtml(game.title)}</h3>
-        ${game.note ? `<p>${escapeHtml(game.note)}</p>` : ""}
-      </article>`)
-    .join("");
+  gameList.innerHTML = favouriteGames.map(renderGame).join("");
+}
+
+// ========== Gaming: tabs ==========
+// One tab for the setup, one for the favourite games. The open tab is kept in
+// the address (#setup or #games), so a link or a refresh opens it again.
+const tabs = [...document.querySelectorAll('[role="tab"]')];
+
+if (tabs.length) {
+  const selectTab = (tab) => {
+    tabs.forEach((t) => {
+      const selected = t === tab;
+      t.setAttribute("aria-selected", String(selected));
+      t.tabIndex = selected ? 0 : -1;
+      document.getElementById(t.getAttribute("aria-controls")).hidden = !selected;
+    });
+    history.replaceState(null, "", `#${tab.getAttribute("aria-controls")}`);
+  };
+
+  tabs.forEach((tab, i) => {
+    tab.addEventListener("click", () => selectTab(tab));
+    // The arrow keys move between the tabs
+    tab.addEventListener("keydown", (event) => {
+      const step = { ArrowRight: 1, ArrowLeft: -1 }[event.key];
+      if (!step) return;
+      const next = tabs[(i + step + tabs.length) % tabs.length];
+      selectTab(next);
+      next.focus();
+    });
+  });
+
+  // Open the tab the address points to, also when a link on the page changes it
+  const openLinkedTab = () => {
+    const linked = tabs.find((tab) => location.hash === `#${tab.getAttribute("aria-controls")}`);
+    if (linked) selectTab(linked);
+  };
+  openLinkedTab();
+  window.addEventListener("hashchange", openLinkedTab);
 }
 
 // ========== Travel: holiday list ==========

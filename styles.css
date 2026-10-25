@@ -692,7 +692,8 @@ ul {
   margin: 0 4px 4px auto;
 }
 
-.holiday[open] .chevron {
+.holiday[open] .chevron,
+.game[open] .chevron {
   transform: rotate(-135deg);
   margin-bottom: -4px;
 }
@@ -1448,36 +1449,203 @@ ul {
   font-weight: 600;
 }
 
+/* Tabs: they double as the page's headings */
+.gaming-page .page-intro {
+  padding-bottom: 40px;
+}
+
+.tabs {
+  display: flex;
+  gap: 32px;
+  border-bottom: 1px solid var(--border);
+}
+
+.tab {
+  position: relative;
+  padding: 0 0 14px;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: clamp(1.35rem, 4vw, 1.9rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.tab:hover,
+.tab[aria-selected="true"] {
+  color: var(--text);
+}
+
+/* The accent line under the open tab */
+.tab::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform 0.25s;
+}
+
+.tab[aria-selected="true"]::after {
+  transform: scaleX(1);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.tab-panel {
+  padding-bottom: 80px;
+  animation: fade-up 0.35s ease;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/* Favourite games: a card per game that opens to show more */
 .games {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .game {
-  padding: 24px;
-  border-radius: var(--radius);
+  background: var(--surface);
   border: 1px solid var(--border);
-  background:
-    linear-gradient(135deg, color-mix(in srgb, var(--accent) 14%, transparent), transparent 60%),
-    var(--surface);
-  transition: transform 0.25s, box-shadow 0.25s;
+  border-radius: var(--radius);
+  transition: box-shadow 0.25s;
 }
 
-.game:hover {
-  transform: translateY(-4px);
+.game[open] {
   box-shadow: var(--shadow);
 }
 
-.game h3 {
-  margin: 0 0 6px;
-  font-size: 1.15rem;
+.game summary {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 24px;
+  cursor: pointer;
+  list-style: none;
 }
 
-.game p {
-  margin: 0;
+.game summary::-webkit-details-marker {
+  display: none;
+}
+
+.game summary:hover .game-title {
+  color: var(--accent);
+}
+
+.game-badge {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  object-fit: cover;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 35%, transparent), var(--accent-soft));
+  color: var(--accent);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+/* A cover keeps its tall shape, so the whole picture shows */
+img.game-badge {
+  width: 40px;
+  height: 60px;
+  border-radius: 6px;
+}
+
+.game-heading {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.game-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.game-note {
   color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.game-body {
+  display: grid;
+  gap: 24px;
+  margin: 0 24px;
+  padding: 20px 0 24px;
+  border-top: 1px solid var(--border);
+  animation: fade-up 0.25s ease;
+}
+
+.game-body:has(.game-cover) {
+  grid-template-columns: 240px minmax(0, 1fr);
+}
+
+.game-cover {
+  width: 100%;
+  aspect-ratio: 2 / 3; /* Steam's portrait covers */
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.game-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+  margin: 0 0 18px;
+}
+
+.game-facts div {
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.game-facts dt {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.game-facts dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.game-about {
+  margin: 0 0 14px;
+}
+
+.game-about:last-child {
+  margin-bottom: 0;
+}
+
+.game-link {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.game-link:hover {
+  text-decoration: underline;
 }
 
 /* Labels in the drawings get too small on phones; the spec lists cover them */
@@ -1485,6 +1653,13 @@ ul {
   .pc-panel { padding: 12px; }
   .diagram .callout { display: none; }
   .diagram-back { top: 8px; left: 8px; padding: 4px 10px; font-size: 0.75rem; }
+  .tabs { gap: 20px; }
+  .tab-panel { padding-bottom: 56px; }
+  .game summary { padding: 14px 16px; gap: 12px; }
+  .game-body { margin: 0 16px; padding-bottom: 16px; }
+  .game-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .game-body:has(.game-cover) { grid-template-columns: minmax(0, 1fr); }
+  .game-cover { max-width: 220px; }
 }
 
 /* Contact */
@@ -1592,6 +1767,8 @@ ul {
   .setup-diagram #pc,
   .pc-diagram,
   .diagram-back { transition: none !important; }
+  .tab-panel,
+  .game-body { animation: none; }
 }
 
 /* ========== Responsive ========== */
