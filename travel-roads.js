@@ -55,7 +55,7 @@ const roadPaths = {
     // New York → Washington D.C.
     "wfwwFjjqbMu@~Bt|BpzArk@lXn^lD`@|@UjBsEp@{A~CuC|m@iJvbAgB|b@cC~OaJzQ_Chm@dDp_@OlFgCzFwe@dl@_DtIcAjInAds@pS`pBzDr_APvb@mBnfBdAhKzCvKt_B~jDbG`Gnb@xShJxL~BfKxBfYe@lcA`EvPf]|WtmA~j@`PfF~TXlG`Bhw@jg@byBbjA~FvI|Kpk@vQbV`\\xWpO|O|a@vYb|DfnDfRtYdLjMdNhJnUhJnKxG|jDdwC`Zv[jFlJx\\r{@`_AvpBz|CxvEtu@h_CzeAveChFtFnGvCfg@dHtKxEbm@bh@~dA`vAnDxLrdAl}FrGtj@tDnNhGlMr`Wbi\\~kOxxRZzJaAvQjs@`t@fA|DPrUpApEdjAdjAjL|KzBf@bBxBL`DpSpVri@vwApWvy@llAlkAdO~SvBbKxGpyBtCnMxYry@tP|w@`EfWpNb|AdPt_@hu@bdAbe@`lAlMzLpPh}@tDv[f@rq@nb@diB`d@t^tw@xu@ve@zZ|MxL~tD~bGzeDbaDfOfIxp@nU`j@bh@dEfAvT|@~ElBlx@tz@fFdObx@{J~v@~FbK`SjI~FtLtC~[zUdc@tl@ftBp}ExKbJda@zN|CjGnKfKzD|@rHo@~GtRrOvUpHxU`MpNpOvEkFlbAyAb{@mOh{BkAlEtC|HeAhOvDdSzAjWcFf@^`HbWoC`Cjf@tPzDrk@rHs@pH|GnXt\\b`@nPpKxrCpqE~CnKE|GeKlu@z@bJmBfLtF~LhRdC|Vd_@v`AxwBr`BxuAdJlMxOt_@pQlx@h^t{@dx@xvBpa@bZrJDft@nhCjq@j_BxPjX~KxVrg@v_B|eAxyCzW``@nHyI|Bc@xC~Qze@~gAtPjWx|AdhBbpAzxBpbCj_H|IxBzcApn@BfCqR|p@^nHdEbB~SbAbRdPbSjFtExCrqAf_BnXxh@jwApvCxG|PpmAbvFvNte@xTpb@`e@jn@h`@j_Alx@jnA`J`SpI~`@hi@foEz@jeBfAbP~h@djCjCxTIra@iKxaA}AtFaBNuAaBDiCrAuA~D|AxfBrbBdFrMb\\duBhFnPxGtLhk@vv@`KhFc_@r`N^la@bHdb@d~CliLnFf\\ll@zfFvHba@drBt{FjJrKlcBdjAzNfO~IlPjm@b}ArhA|bD~IjKdhA`l@rIlIdFtJd_BdlF~`Dv|HzHhV`Ndo@lEvMxoAfeCfJnXnEzZ`v@jiJpDhQ|FbNh|GduJjKpKxo@jb@fRjQh_B~jBjbA~{ArEhNzD|]rDdMbq@zaApWle@hU~h@veAdvClb@fv@fHrSxSbcAGbD_C`ApDgJhGiHjf@h[pHzBjbB}BtMzBbL`IvM|M~k@jt@bqBnjAxEdErC|FtAjJhAvdCdF~w@xCtK`EnHjk@lj@hLxDndAdDvx@w@nHvF|JtUxKjH~eAtHbk@w@pNrA~P~Flo@n_@r|@l]`QpExR`AtkB{H~^}Dr\\sI`x@}X~bAie@rPsFrjBc^xK_@rJrAng@tRvTpPj}AxqCtK|Llv@nn@pWzW|j@~w@xb@ff@hp@`}@|HxEvHvB||Cfe@tQrGjQxL~RpTcC|YPzE|Jv^lKlo@|Nx^za@jzBlNfkBC~TqDfd@lB~[lDdK`\\bd@bWbUlFxHtZ|y@hCrQ[l[~Cdp@",
   ],
-  "thailand-2017": [
+  "thailand-2015": [
     // Bangkok → Boutique Raft Resort River Kwai
     "gt_sA}qgdRwFlFhf@p`@wB}@_L~GgCaCokB`gCvIjd@p@bRsu@|zOdUboRji@dnDtsAdvFdAtIo@zCgBzA{IBeL`D}oEvmBgEjCkEbGoDlQkXtdC}N~mBwIxg@rBpjAuLniAvK`u@fFrk@tk@vvEbLrvF~O~aAdIj}AdHjl@`Cxv@tEzUvFxMAnIxIrb@_Hf_Af@n_A{L|~@qk@niA{|@zt@}J`HkVfCqg@vLyK~H}EvNcEx|@OeEcrApOmX`EyL~GuElHcHxUmFvoBgBzJaGnKymCrdDwdIb{HqSnKulAxXxAzEsgB|a@{YhRaG|HiBlNnDpq@gF`v@tAxFzGhLjAhMeQb|@anA|xOpDxj@{MbmAdPthBcAl|@sBtFwr@jdAml@diAchBrkCovArZcFxBo~CpvD__Ajw@ExCdFrQfKrXrI`qB`Qvm@bq@`wAx@nKeCdHavAfbCw[js@sKrf@Axq@wFjg@_FlDspAj]wHfFiFbLi@nKl@zjFqPttDI|eEuGb`@oElIaKdKiCjIzCdn@a\\xlDmIn\\uoAdbDeB|NdBvh@kBlQeD~Ia_@vm@kcBn|DeHbM}LhIy`Al`@otFnpC}ZfV}QrUwkBr`EgObYoOxR`EjY|Xle@iC\\nArDoKbEmLbMvNzJaBnDf@R",
     // Boutique Raft Resort River Kwai → Bangkok
@@ -69,7 +69,7 @@ const roadPaths = {
     // Koh Samui → Kuala Lumpur
     null,
   ],
-  "florida-2015": [
+  "florida-2014": [
     // Miami → Key West
     "qtl|CdhahN]^jCTl@~sA|A|G\\pLtD~vBo@jRxAzGxChfBdGhDpFIJ|EbOtAhNBDbEvoAyA`m@tJl@pi@u@`BxuAp|BxFfB~eAl`EnXf`@bTzVh[rf@zeF|yGtZlWjh@hYb_JhbDz^xGd}Bvy@rSzKdzAluA||HbwHnXvQfeF|aFhJxFlg@bR|i@~g@bMzHjL`DrMx@tsCk@j]iD|e@`@tNq@`cf@umGt|CqpAvIeG|EaJzs@ohCdjAmjBrIgFdKc@|FxAxKlId`L~}I`uD`iEtkHdvGxJhFto@vHtJhFhy@bz@pDrGjBtL_Ajk@hAjG`FjH~fA|\\`I~DlgDdwC~HpQtkA~aExD|IbeHvsIrvBpjFbcBzoBrg@zuAzbCl{EfB`JKpHg^thCj@nJjT`z@riBlkCpu@vj@xE|HbpFbaTvHdP``B|bCjiCfgJz^rrCbv@|nCr|@tgFxJh}Bz`@l_FpyBdvLpCtJlz@``Bxz@|hClKfc@dVxhCrEnOh^v{@fC~N|JrjBg@fJ{BvHiKpKwhBpn@eGvH}AnIy@fdD`|@rcHiTfaKoRrrBZzKtlBfwJ`wD`mH|rDzbKfDjYj@pq@dI``AfE|Mvh@h`AhGnRlZlnDjZxyA`@p@rMoD`O|p@`AW~AtGvAa@tBrJtCu@rY|oAjMbUnE{BnDrG",
     // Key West → Dry Tortugas National Park

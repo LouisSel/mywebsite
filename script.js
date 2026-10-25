@@ -107,11 +107,17 @@ if (lightbox) {
 }
 
 // ========== Home: countries visited ==========
-// Counted from the flags in travel-data.js, so it updates with each new holiday.
+// Counted from the flags and otherVisitedCountries in travel-data.js, so it
+// updates with each new holiday.
 const countryCount = document.getElementById("country-count");
 
+// Every country I've been to, as two-letter codes
+function visitedCountries() {
+  return new Set([...holidays.flatMap((holiday) => holiday.flag), ...otherVisitedCountries]);
+}
+
 if (countryCount && typeof holidays !== "undefined") {
-  countryCount.textContent = new Set(holidays.flatMap((holiday) => holiday.flag)).size;
+  countryCount.textContent = visitedCountries().size;
 }
 
 // ========== Home: photo slideshow ==========
@@ -463,6 +469,75 @@ if (holidayList && typeof holidays !== "undefined") {
     }
     group.append(renderHoliday(holiday));
   });
+}
+
+// ========== Travel: next on the list ==========
+// Built from `plannedTrips` in travel-data.js.
+const plannedList = document.getElementById("planned-list");
+
+if (plannedList && typeof plannedTrips !== "undefined") {
+  plannedList.innerHTML = plannedTrips
+    .map((trip) => `<li>${escapeHtml(trip.name)}${trip.year ? ` - ${escapeHtml(trip.year)}` : ""}</li>`)
+    .join("");
+}
+
+// ========== Travel: world map ==========
+// Country outlines from world-map-data.js, coloured from travel-data.js:
+// green where I've been, yellow where a trip is planned.
+const worldMap = document.getElementById("world-map-canvas");
+
+if (worldMap && typeof worldCountries !== "undefined" && typeof holidays !== "undefined") {
+  const visited = visitedCountries();
+  const planned = new Set(
+    plannedTrips.flatMap((trip) => trip.countries).filter((code) => !visited.has(code))
+  );
+  const statusOf = (code) => (visited.has(code) ? "visited" : planned.has(code) ? "planned" : "");
+  const statusLabels = { visited: "Been there", planned: "Planned", "": "Not yet" };
+
+  const namesOf = (codes) => worldCountries.filter((c) => codes.has(c.code)).map((c) => c.name).join(", ");
+  const description = `World map. Been there: ${namesOf(visited)}. Planned: ${namesOf(planned) || "none"}.`;
+
+  const { width, height } = WORLD_MAP_SIZE;
+  worldMap.innerHTML = `
+    <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${escapeHtml(description)}">
+      ${worldCountries
+        .map((country, i) => {
+          const status = statusOf(country.code);
+          return `<path d="${country.path}" data-country="${i}"${status ? ` class="is-${status}"` : ""}></path>`;
+        })
+        .join("")}
+    </svg>
+    <p class="world-map-label" hidden></p>`;
+
+  document.getElementById("visited-count").textContent = `(${visited.size})`;
+  document.getElementById("planned-count").textContent = `(${planned.size})`;
+
+  // The name of the country under the pointer (or the one tapped on a phone)
+  const label = worldMap.querySelector(".world-map-label");
+
+  function showLabel(event) {
+    const path = event.target.closest("path");
+    if (!path) {
+      label.hidden = true;
+      return;
+    }
+    const country = worldCountries[path.dataset.country];
+    label.innerHTML = `${escapeHtml(country.name)}<span>${statusLabels[statusOf(country.code)]}</span>`;
+    label.hidden = false;
+    // Keep the label inside the map at the left and right edges
+    const box = worldMap.getBoundingClientRect();
+    const half = label.offsetWidth / 2;
+    label.style.left = `${Math.min(Math.max(event.clientX - box.left, half), box.width - half)}px`;
+    label.style.top = `${event.clientY - box.top}px`;
+  }
+
+  worldMap.addEventListener("pointermove", (event) => {
+    if (event.pointerType === "mouse") showLabel(event);
+  });
+  worldMap.addEventListener("pointerleave", (event) => {
+    if (event.pointerType === "mouse") label.hidden = true;
+  });
+  worldMap.addEventListener("click", showLabel);
 }
 
 // ========== Travel: route maps ==========

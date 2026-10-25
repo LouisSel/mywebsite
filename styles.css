@@ -11,6 +11,9 @@
   --done-soft: #dcfce7;
   --planned: #a16207;
   --planned-soft: #fef9c3;
+  --map-outline: #57534e; /* white would vanish on the light background */
+  --map-visited: #22c55e;
+  --map-planned: #eab308;
   --radius: 14px;
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
   --max-width: 1040px;
@@ -28,6 +31,7 @@
   --done-soft: #052e16;
   --planned: #facc15;
   --planned-soft: #422006;
+  --map-outline: #ffffff;
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
@@ -444,6 +448,100 @@ ul {
     margin: 16px auto;
     padding: 32px 20px;
   }
+}
+
+/* Travel: world map. Only the country outlines, no sea or land colour;
+   countries I've been to are green, planned ones yellow */
+.world-map {
+  position: relative;
+}
+
+.world-map svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.world-map path {
+  fill: transparent; /* not "none", so empty countries still show their name on hover */
+  stroke: var(--map-outline);
+  stroke-width: 0.6px;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke; /* same line width on every screen size */
+  transition: fill 0.15s;
+}
+
+.world-map path.is-visited {
+  fill: var(--map-visited);
+}
+
+.world-map path.is-planned {
+  fill: var(--map-planned);
+}
+
+.world-map path:hover {
+  fill: color-mix(in srgb, var(--map-outline) 30%, transparent);
+}
+
+.world-map path.is-visited:hover {
+  fill: color-mix(in srgb, var(--map-visited) 70%, #ffffff);
+}
+
+.world-map path.is-planned:hover {
+  fill: color-mix(in srgb, var(--map-planned) 70%, #ffffff);
+}
+
+/* The country name above the pointer */
+.world-map-label {
+  position: absolute;
+  transform: translate(-50%, calc(-100% - 12px));
+  margin: 0;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.world-map-label span {
+  margin-left: 8px;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.world-map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin-top: 24px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.world-map-legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.world-map-legend li::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--map-outline);
+  border-radius: 4px;
+}
+
+.world-map-legend .is-visited::before {
+  background: var(--map-visited);
+}
+
+.world-map-legend .is-planned::before {
+  background: var(--map-planned);
 }
 
 /* ========== Buttons ========== */

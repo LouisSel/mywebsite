@@ -63,9 +63,9 @@ const holidays = [
     stops: [
       { name: "Staycity Aparthotels, Levallois-Perret", lat: 48.8943, lng: 2.3006, note: "", photos: [] },
       { name: "Eiffel Tower",                           lat: 48.8583, lng: 2.2945, note: "", photos: [] },
-      { name: "Paris Expo Porte de Versailles",         lat: 48.8287, lng: 2.2890, note: "", photos: [] },
+      { name: "Paris Expo Porte de Versailles",         lat: 48.8287, lng: 2.2890, note: "eSports World Cup", photos: [] },
       { name: "Louvre",                                 lat: 48.8611, lng: 2.3358, note: "", photos: [] },
-      { name: "Bar Les Ombres",     lat: 48.8611, lng: 2.2985, note: "", photos: [] },
+      { name: "Bar Les Ombres",     lat: 48.8611, lng: 2.2985, note: "Great Bar", photos: [] },
     ],
   },
   {
@@ -93,10 +93,10 @@ const holidays = [
     ],
   },
   {
-    id: "thailand-2017",
+    id: "thailand-2015",
     country: "Thailand",
     flag: "th",
-    year: "2016",
+    year: "2015",
     stops: [
       { name: "Bangkok",                          lat: 13.7657, lng: 100.4778, note: "", photos: [] },
       { name: "Boutique Raft Resort River Kwai",  lat: 14.2167, lng: 99.0567, note: "", photos: [] },
@@ -108,10 +108,10 @@ const holidays = [
     ],
   },
   {
-    id: "florida-2015",
+    id: "florida-2014",
     country: "United States",
     flag: "us",
-    year: "2015",
+    year: "2014",
     stops: [
       { name: "Miami",                        lat: 25.7929, lng: -80.1293, note: "", photos: [] },
       { name: "Key West",                     lat: 24.5541, lng: -81.7797, note: "", photos: [] },
@@ -132,7 +132,7 @@ const holidays = [
     stops: [
       { name: "Lissabon",                   lat: 38.7218, lng: -9.1329, note: "", photos: [] },
       { name: "Salema",                     lat: 37.0661, lng: -8.8236, note: "", photos: [] },
-      { name: "Baleal Surf Camp - Peniche", lat: 39.3642, lng: -9.3332, note: "", photos: [] },
+      { name: "Peniche", lat: 39.3642, lng: -9.3332, note: "Surf Camp", photos: [] },
       { name: "Porto",                      lat: 41.1457, lng: -8.6091, note: "", photos: [] },
       { name: "Lissabon",                   lat: 38.7218, lng: -9.1329, note: "", photos: [] },
     ],
@@ -193,7 +193,7 @@ const holidays = [
     flag: "hr",
     year: "2022",
     stops: [
-      { name: "Pula", lat: 44.8690, lng: 13.8464, note: "", photos: [] },
+      { name: "Pula", lat: 44.8690, lng: 13.8464, note: "Boys trip", photos: [] },
     ],
   },
   {
@@ -223,7 +223,7 @@ const holidays = [
     year: "2024",
     focusZoom: 12,
     stops: [
-      { name: "Safaga",              lat: 26.8357, lng: 33.9487, note: "", photos: [] },
+      { name: "Safaga",              lat: 26.8357, lng: 33.9487, note: "Windsurfing", photos: [] },
       { name: "Temple of Luxor",     lat: 25.6998, lng: 32.6414, note: "", photos: [] },
       { name: "Valley of the Kings", lat: 25.7411, lng: 32.6031, note: "", photos: [] },
       { name: "Safaga",              lat: 26.8357, lng: 33.9487, note: "", photos: [] },
@@ -231,7 +231,7 @@ const holidays = [
   },
   {
     id: "kreuzfahrt-2025",
-    country: "Cruise",
+    country: "Company cruise",
     flag: ["no", "dk"],
     year: "2025",
     // Sea routes are drawn around the coast: see "kreuzfahrt-2025" in travel-roads.js.
@@ -242,4 +242,34 @@ const holidays = [
       { name: "Kiel",         lat: 54.3251, lng: 10.1461, by: "boat", note: "", photos: [] },
     ],
   },
+];
+
+// ========== Other countries I've been to ==========
+// Countries without a holiday entry above. They are green on the world map
+// and counted on the homepage, like the countries of the holidays.
+// Two-letter country codes, the same as the flags (full list:
+// https://flagcdn.com/en/codes.json). The United Kingdom is "gb", not "uk".
+const otherVisitedCountries = [
+  "at", // Austria
+  "ch", // Switzerland
+  "de", // Germany
+  "hu", // Hungary
+  "nl", // Netherlands
+  "se", // Sweden
+  "gb", // United Kingdom
+  "it", // Italy
+];
+
+// ========== Trips I'm planning ==========
+// Shown under "Next on the list" on the Travel page.
+//   name       shown in the list
+//   year       shown after the name
+//   countries  two-letter codes of the countries the trip goes to: yellow on
+//              the world map (a country you've already been to stays green).
+//              Leave it empty ([]) until you know.
+const plannedTrips = [
+  { name: "Morocco",               year: "2026", countries: ["ma"] },
+  { name: "Soelden",               year: "2026", countries: ["at"] },
+  { name: "Mauritania",            year: "2027", countries: ["mr"] },
+  { name: "Safari through Africa", year: "2027", countries: [""] },
 ];

@@ -47,6 +47,17 @@
       </p>
     </section>
 
+    <!-- World map: coloured from travel-data.js, outlines from world-map-data.js -->
+    <section id="world-map" class="section container panel reveal">
+      <h2 class="section-title">World map</h2>
+      <div class="world-map" id="world-map-canvas"></div>
+      <ul class="world-map-legend">
+        <li class="is-visited">Been there <span id="visited-count"></span></li>
+        <li class="is-planned">Planned <span id="planned-count"></span></li>
+        <li>Not yet</li>
+      </ul>
+    </section>
+
     <!-- Holidays: the list is built from travel-data.js — add and edit holidays there -->
     <section id="holidays" class="section container panel reveal">
       <h2 class="section-title">Holidays</h2>
@@ -60,12 +71,10 @@
       <p class="lightbox-caption"></p>
     </dialog>
 
-    <!-- Bucket list -->
+    <!-- Bucket list: built from plannedTrips in travel-data.js -->
     <section id="next" class="section container panel reveal">
       <h2 class="section-title">Next on the list</h2>
-      <ul class="chips">
-        <li>Morocco - 2026</li><li>Soelden - 2026</li><li>Mauretania - 2027</li><li>Safari through Africa - 2027</li>
-      </ul>
+      <ul class="chips" id="planned-list"></ul>
     </section>
   </main>
 
@@ -78,6 +87,7 @@
   <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
   <script src="travel-data.js"></script>
   <script src="travel-roads.js"></script>
+  <script src="world-map-data.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
