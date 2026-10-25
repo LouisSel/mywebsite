@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Louis Seliger's gaming PC, setup and favourite games.">
+  <title>Gaming — Louis Seliger</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="gaming-page">
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="index.html" class="logo">LS</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="cv.html">CV</a></li>
+        <li><a href="travel.html">Travel</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li>
+          <button class="theme-toggle" aria-label="Toggle dark mode">
+            <span class="icon-sun">☀</span><span class="icon-moon">☾</span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- Page intro -->
+    <section class="page-intro container">
+      <p class="eyebrow">Video games</p>
+      <h1>My gaming setup</h1>
+      <p class="tagline">
+        When I'm not off somewhere around the world, you'll probably find me at home in front
+        of this setup. Here's what's inside my PC, what's on my desk and what I like to play.
+      </p>
+    </section>
+
+    <!-- PC: the specs are listed in gaming-data.js -->
+    <section id="pc" class="section container reveal">
+      <h2 class="section-title">My PC</h2>
+      <div class="pc-panel">
+          <svg id="pc-diagram" class="pc-diagram" viewBox="0 30 1800 920" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Line drawing of my PC with its parts labelled">
+          <g class="pc" transform="translate(300 0)">
+          <g id="case" class="part">
+          <rect x="80" y="100" width="1040" height="820" rx="16"/>
+          <rect x="104" y="150" width="992" height="722" rx="8" class="thin"/>
+          <line x1="80" y1="140" x2="1120" y2="140" class="thin"/>
+          <line x1="80" y1="882" x2="1120" y2="882" class="thin"/>
+          <path d="M150 100 C150 62 192 62 192 100"/>
+          <circle cx="1092" cy="120" r="4" class="thin"/>
+          <rect x="130" y="920" width="100" height="12" rx="3"/>
+          <rect x="970" y="920" width="100" height="12" rx="3"/>
+          </g>
+          <g id="fans-side" class="part">
+          <rect x="112" y="200" width="38" height="210" rx="6"/>
+          <rect x="120" y="210" width="22" height="190" rx="4" class="thin"/>
+          <line x1="122" y1="220" x2="140" y2="230" class="thin"/>
+          <line x1="122" y1="254" x2="140" y2="264" class="thin"/>
+          <line x1="122" y1="288" x2="140" y2="298" class="thin"/>
+          <line x1="122" y1="322" x2="140" y2="332" class="thin"/>
+          <line x1="122" y1="356" x2="140" y2="366" class="thin"/>
+          <line x1="122" y1="390" x2="140" y2="400" class="thin"/>
+          <rect x="112" y="640" width="38" height="220" rx="6"/>
+          <rect x="120" y="650" width="22" height="200" rx="4" class="thin"/>
+          <line x1="122" y1="660" x2="140" y2="670" class="thin"/>
+          <line x1="122" y1="696" x2="140" y2="706" class="thin"/>
+          <line x1="122" y1="732" x2="140" y2="742" class="thin"/>
+          <line x1="122" y1="768" x2="140" y2="778" class="thin"/>
+          <line x1="122" y1="804" x2="140" y2="814" class="thin"/>
+          <line x1="122" y1="840" x2="140" y2="850" class="thin"/>
+          </g>
+          <g id="radiator" class="part">
+          <rect x="190" y="160" width="800" height="40" rx="6"/>
+          <path d="M205 190 L315 190 L329 174 L385 174 L399 190 L509 190 L523 174 L579 174 L593 190 L703 190 L717 174 L773 174 L787 190 L897 190 L911 174 L967 174 L981 190 L975 190" class="thin"/>
+          <rect x="200" y="200" width="780" height="26" rx="3"/>
+          <line x1="212" y1="204" x2="212" y2="222" class="hair"/>
+          <line x1="222" y1="204" x2="222" y2="222" class="hair"/>
+          <line x1="232" y1="204" x2="232" y2="222" class="hair"/>
+          <line x1="242" y1="204" x2="242" y2="222" class="hair"/>
+          <line x1="252" y1="204" x2="252" y2="222" class="hair"/>
+          <line x1="262" y1="204" x2="262" y2="222" class="hair"/>
+          <line x1="272" y1="204" x2="272" y2="222" class="hair"/>
+          <line x1="282" y1="204" x2="282" y2="222" class="hair"/>
+          <line x1="292" y1="204" x2="292" y2="222" class="hair"/>
+          <line x1="302" y1="204" x2="302" y2="222" class="hair"/>
+          <line x1="312" y1="204" x2="312" y2="222" class="hair"/>
+          <line x1="322" y1="204" x2="322" y2="222" class="hair"/>
+          <line x1="332" y1="204" x2="332" y2="222" class="hair"/>
+          <line x1="342" y1="204" x2="342" y2="222" class="hair"/>
+          <line x1="352" y1="204" x2="352" y2="222" class="hair"/>
+          <line x1="362" y1="204" x2="362" y2="222" class="hair"/>
+          <line x1="372" y1="204" x2="372" y2="222" class="hair"/>
+          <line x1="382" y1="204" x2="382" y2="222" class="hair"/>
+          <line x1="392" y1="204" x2="392" y2="222" class="hair"/>
+          <line x1="402" y1="204" x2="402" y2="222" class="hair"/>
+          <line x1="412" y1="204" x2="412" y2="222" class="hair"/>
+          <line x1="422" y1="204" x2="422" y2="222" class="hair"/>
+          <line x1="432" y1="204" x2="432" y2="222" class="hair"/>
+          <line x1="442" y1="204" x2="442" y2="222" class="hair"/>
+          <line x1="452" y1="204" x2="452" y2="222" class="hair"/>
+          <line x1="462" y1="204" x2="462" y2="222" class="hair"/>
+          <line x1="472" y1="204" x2="472" y2="222" class="hair"/>
+          <line x1="482" y1="204" x2="482" y2="222" class="hair"/>
+          <line x1="492" y1="204" x2="492" y2="222" class="hair"/>
+          <line x1="502" y1="204" x2="502" y2="222" class="hair"/>
+          <line x1="512" y1="204" x2="512" y2="222" class="hair"/>
+          <line x1="522" y1="204" x2="522" y2="222" class="hair"/>
+          <line x1="532" y1="204" x2="532" y2="222" class="hair"/>
+          <line x1="542" y1="204" x2="542" y2="222" class="hair"/>
+          <line x1="552" y1="204" x2="552" y2="222" class="hair"/>
+          <line x1="562" y1="204" x2="562" y2="222" class="hair"/>
+          <line x1="572" y1="204" x2="572" y2="222" class="hair"/>
+          <line x1="582" y1="204" x2="582" y2="222" class="hair"/>
+          <line x1="592" y1="204" x2="592" y2="222" class="hair"/>
+          <line x1="602" y1="204" x2="602" y2="222" class="hair"/>
+          <line x1="612" y1="204" x2="612" y2="222" class="hair"/>
+          <line x1="622" y1="204" x2="622" y2="222" class="hair"/>
+          <line x1="632" y1="204" x2="632" y2="222" class="hair"/>
+          <line x1="642" y1="204" x2="642" y2="222" class="hair"/>
+          <line x1="652" y1="204" x2="652" y2="222" class="hair"/>
+          <line x1="662" y1="204" x2="662" y2="222" class="hair"/>
+          <line x1="672" y1="204" x2="672" y2="222" class="hair"/>
+          <line x1="682" y1="204" x2="682" y2="222" class="hair"/>
+          <line x1="692" y1="204" x2="692" y2="222" class="hair"/>
+          <line x1="702" y1="204" x2="702" y2="222" class="hair"/>
+          <line x1="712" y1="204" x2="712" y2="222" class="hair"/>
+          <line x1="722" y1="204" x2="722" y2="222" class="hair"/>
+          <line x1="732" y1="204" x2="732" y2="222" class="hair"/>
+          <line x1="742" y1="204" x2="742" y2="222" class="hair"/>
+          <line x1="752" y1="204" x2="752" y2="222" class="hair"/>
+          <line x1="762" y1="204" x2="762" y2="222" class="hair"/>
+          <line x1="772" y1="204" x2="772" y2="222" class="hair"/>
+          <line x1="782" y1="204" x2="782" y2="222" class="hair"/>
+          <line x1="792" y1="204" x2="792" y2="222" class="hair"/>
+          <line x1="802" y1="204" x2="802" y2="222" class="hair"/>
+          <line x1="812" y1="204" x2="812" y2="222" class="hair"/>
+          <line x1="822" y1="204" x2="822" y2="222" class="hair"/>
+          <line x1="832" y1="204" x2="832" y2="222" class="hair"/>
+          <line x1="842" y1="204" x2="842" y2="222" class="hair"/>
+          <line x1="852" y1="204" x2="852" y2="222" class="hair"/>
+          <line x1="862" y1="204" x2="862" y2="222" class="hair"/>
+          <line x1="872" y1="204" x2="872" y2="222" class="hair"/>
+          <line x1="882" y1="204" x2="882" y2="222" class="hair"/>
+          <line x1="892" y1="204" x2="892" y2="222" class="hair"/>
+          <line x1="902" y1="204" x2="902" y2="222" class="hair"/>
+          <line x1="912" y1="204" x2="912" y2="222" class="hair"/>
+          <line x1="922" y1="204" x2="922" y2="222" class="hair"/>
+          <line x1="932" y1="204" x2="932" y2="222" class="hair"/>
+          <line x1="942" y1="204" x2="942" y2="222" class="hair"/>
+          <line x1="952" y1="204" x2="952" y2="222" class="hair"/>
+          <line x1="962" y1="204" x2="962" y2="222" class="hair"/>
+          </g>
+          <g id="motherboard" class="part">
+          <rect x="190" y="232" width="680" height="212" rx="4" class="thin"/>
+          <rect x="205" y="265" width="80" height="175" rx="6"/>
+          <path d="M220 300 L262 282 L272 296 L232 314 Z" class="thin"/>
+          <path d="M220 340 L262 322 L272 336 L232 354 Z" class="thin"/>
+          <path d="M220 380 L262 362 L272 376 L232 394 Z" class="thin"/>
+          <path d="M238 420 L270 406" class="thin"/>
+          <rect x="520" y="288" width="40" height="24" rx="3"/>
+          <rect x="600" y="250" width="70" height="110" rx="4"/>
+          <line x1="614" y1="254" x2="614" y2="356" class="hair"/>
+          <line x1="628" y1="254" x2="628" y2="356" class="hair"/>
+          <line x1="642" y1="254" x2="642" y2="356" class="hair"/>
+          <line x1="656" y1="254" x2="656" y2="356" class="hair"/>
+          <line x1="604" y1="266" x2="666" y2="266" class="hair"/>
+          <line x1="604" y1="282" x2="666" y2="282" class="hair"/>
+          <line x1="604" y1="298" x2="666" y2="298" class="hair"/>
+          <line x1="604" y1="314" x2="666" y2="314" class="hair"/>
+          <line x1="604" y1="330" x2="666" y2="330" class="hair"/>
+          <line x1="604" y1="346" x2="666" y2="346" class="hair"/>
+          <line x1="520" y1="430" x2="540" y2="370" class="thin"/>
+          <line x1="536" y1="430" x2="556" y2="370" class="thin"/>
+          <line x1="552" y1="430" x2="572" y2="370" class="thin"/>
+          <line x1="568" y1="430" x2="588" y2="370" class="thin"/>
+          <line x1="584" y1="430" x2="604" y2="370" class="thin"/>
+          <rect x="700" y="248" width="22" height="188" rx="10" class="thin"/>
+          </g>
+          <g id="storage" class="part">
+          <rect x="885" y="240" width="200" height="380" rx="6" class="thin"/>
+          <rect x="895" y="252" width="180" height="172" rx="6"/>
+          <line x1="1030" y1="270" x2="1062" y2="270" class="thin"/>
+          <rect x="905" y="322" width="10" height="32" rx="3" class="thin"/>
+          <rect x="895" y="436" width="180" height="172" rx="6"/>
+          <line x1="1030" y1="454" x2="1062" y2="454" class="thin"/>
+          <rect x="905" y="506" width="10" height="32" rx="3" class="thin"/>
+          </g>
+          <g id="ram" class="part">
+          <rect x="440" y="265" width="14" height="190" rx="3"/>
+          <rect x="470" y="265" width="14" height="190" rx="3"/>
+          <line x1="447" y1="272" x2="447" y2="448" class="hair"/>
+          <line x1="477" y1="272" x2="477" y2="448" class="hair"/>
+          </g>
+          <g id="cpu" class="part">
+          <rect x="300" y="295" width="120" height="120" rx="4" class="thin"/>
+          <line x1="300" y1="425" x2="420" y2="425" class="thin"/>
+          <line x1="420" y1="425" x2="420" y2="405" class="thin"/>
+          <rect x="312" y="307" width="96" height="96" rx="4"/>
+          <path d="M316 399 L326 399 L316 389 Z" class="thin"/>
+          <rect x="326" y="321" width="68" height="68" rx="6"/>
+          <rect x="334" y="329" width="52" height="52" rx="3" class="hair"/>
+          <line x1="320" y1="312" x2="320" y2="316" class="hair"/>
+          <line x1="400" y1="312" x2="400" y2="316" class="hair"/>
+          <line x1="320" y1="394" x2="320" y2="398" class="hair"/>
+          <line x1="400" y1="394" x2="400" y2="398" class="hair"/>
+          </g>
+          <g id="cpu-cooler" class="part">
+          <path d="M408 312 C440 255 530 248 700 248 S905 255 922 226"/>
+          <path d="M420 324 C455 270 540 263 700 263 S918 270 938 226"/>
+          <rect x="292" y="287" width="136" height="136" rx="30"/>
+          <circle cx="360" cy="355" r="52"/>
+          <circle cx="360" cy="355" r="44" class="thin" stroke-dasharray="2 4"/>
+          <circle cx="360" cy="355" r="14" class="thin"/>
+          </g>
+          <g id="gpu" class="part">
+          <rect x="168" y="440" width="22" height="180" rx="3"/>
+          <line x1="174" y1="460" x2="184" y2="474" class="hair"/>
+          <line x1="174" y1="484" x2="184" y2="498" class="hair"/>
+          <line x1="174" y1="508" x2="184" y2="522" class="hair"/>
+          <line x1="174" y1="532" x2="184" y2="546" class="hair"/>
+          <line x1="174" y1="556" x2="184" y2="570" class="hair"/>
+          <line x1="174" y1="580" x2="184" y2="594" class="hair"/>
+          <line x1="174" y1="604" x2="184" y2="618" class="hair"/>
+          <rect x="195" y="450" width="665" height="160" rx="12"/>
+          <path d="M210 462 L845 462" class="thin"/><path d="M210 598 L845 598" class="thin"/>
+          <line x1="592" y1="486" x2="606" y2="464" class="thin"/>
+          <line x1="430" y1="596" x2="444" y2="574" class="thin"/>
+          <line x1="604" y1="486" x2="618" y2="464" class="thin"/>
+          <line x1="442" y1="596" x2="456" y2="574" class="thin"/>
+          <line x1="616" y1="486" x2="630" y2="464" class="thin"/>
+          <line x1="454" y1="596" x2="468" y2="574" class="thin"/>
+          <circle cx="310" cy="530" r="74"/>
+          <circle cx="310" cy="530" r="66" class="thin"/>
+          <path d="M326.3 530.0 Q347.9 539.7 355.4 572.3 L344.5 581.5 Q344.3 548.8 324.7 537.1 Z" class="thin"/>
+          <path d="M322.5 540.5 Q332.8 561.8 317.6 591.5 L303.4 591.6 Q324.3 566.5 316.7 544.8 Z" class="thin"/>
+          <path d="M312.8 546.0 Q307.0 569.0 276.3 582.0 L265.3 573.0 Q297.5 567.1 305.6 545.7 Z" class="thin"/>
+          <path d="M301.9 544.1 Q282.7 558.0 250.7 548.2 L248.1 534.2 Q276.6 550.4 296.5 539.2 Z" class="thin"/>
+          <path d="M294.7 535.6 Q271.1 533.9 252.9 505.8 L259.9 493.4 Q271.3 524.1 293.8 528.4 Z" class="thin"/>
+          <path d="M294.7 524.4 Q277.7 507.9 281.8 474.8 L295.2 469.8 Q284.1 500.6 298.6 518.3 Z" class="thin"/>
+          <path d="M301.9 515.9 Q299.4 492.3 323.9 469.6 L337.3 474.3 Q309.1 490.9 308.8 513.8 Z" class="thin"/>
+          <path d="M312.8 514.0 Q326.1 494.3 359.5 492.7 L366.7 504.9 Q334.4 499.4 319.5 516.8 Z" class="thin"/>
+          <path d="M322.5 519.5 Q345.3 513.0 371.9 533.2 L369.6 547.2 Q348.4 522.3 325.8 526.0 Z" class="thin"/>
+          <circle cx="310" cy="530" r="16.28"/>
+          <circle cx="310" cy="530" r="7.3260000000000005" class="thin"/>
+          <circle cx="527" cy="530" r="74"/>
+          <circle cx="527" cy="530" r="66" class="thin"/>
+          <path d="M543.3 530.0 Q564.9 539.7 572.4 572.3 L561.5 581.5 Q561.3 548.8 541.7 537.1 Z" class="thin"/>
+          <path d="M539.5 540.5 Q549.8 561.8 534.6 591.5 L520.4 591.6 Q541.3 566.5 533.7 544.8 Z" class="thin"/>
+          <path d="M529.8 546.0 Q524.0 569.0 493.3 582.0 L482.3 573.0 Q514.5 567.1 522.6 545.7 Z" class="thin"/>
+          <path d="M518.9 544.1 Q499.7 558.0 467.7 548.2 L465.1 534.2 Q493.6 550.4 513.5 539.2 Z" class="thin"/>
+          <path d="M511.7 535.6 Q488.1 533.9 469.9 505.8 L476.9 493.4 Q488.3 524.1 510.8 528.4 Z" class="thin"/>
+          <path d="M511.7 524.4 Q494.7 507.9 498.8 474.8 L512.2 469.8 Q501.1 500.6 515.6 518.3 Z" class="thin"/>
+          <path d="M518.9 515.9 Q516.4 492.3 540.9 469.6 L554.3 474.3 Q526.1 490.9 525.8 513.8 Z" class="thin"/>
+          <path d="M529.8 514.0 Q543.1 494.3 576.5 492.7 L583.7 504.9 Q551.4 499.4 536.5 516.8 Z" class="thin"/>
+          <path d="M539.5 519.5 Q562.3 513.0 588.9 533.2 L586.6 547.2 Q565.4 522.3 542.8 526.0 Z" class="thin"/>
+          <circle cx="527" cy="530" r="16.28"/>
+          <circle cx="527" cy="530" r="7.3260000000000005" class="thin"/>
+          <circle cx="744" cy="530" r="74"/>
+          <circle cx="744" cy="530" r="66" class="thin"/>
+          <path d="M760.3 530.0 Q781.9 539.7 789.4 572.3 L778.5 581.5 Q778.3 548.8 758.7 537.1 Z" class="thin"/>
+          <path d="M756.5 540.5 Q766.8 561.8 751.6 591.5 L737.4 591.6 Q758.3 566.5 750.7 544.8 Z" class="thin"/>
+          <path d="M746.8 546.0 Q741.0 569.0 710.3 582.0 L699.3 573.0 Q731.5 567.1 739.6 545.7 Z" class="thin"/>
+          <path d="M735.9 544.1 Q716.7 558.0 684.7 548.2 L682.1 534.2 Q710.6 550.4 730.5 539.2 Z" class="thin"/>
+          <path d="M728.7 535.6 Q705.1 533.9 686.9 505.8 L693.9 493.4 Q705.3 524.1 727.8 528.4 Z" class="thin"/>
+          <path d="M728.7 524.4 Q711.7 507.9 715.8 474.8 L729.2 469.8 Q718.1 500.6 732.6 518.3 Z" class="thin"/>
+          <path d="M735.9 515.9 Q733.4 492.3 757.9 469.6 L771.3 474.3 Q743.1 490.9 742.8 513.8 Z" class="thin"/>
+          <path d="M746.8 514.0 Q760.1 494.3 793.5 492.7 L800.7 504.9 Q768.4 499.4 753.5 516.8 Z" class="thin"/>
+          <path d="M756.5 519.5 Q779.3 513.0 805.9 533.2 L803.6 547.2 Q782.4 522.3 759.8 526.0 Z" class="thin"/>
+          <circle cx="744" cy="530" r="16.28"/>
+          <circle cx="744" cy="530" r="7.3260000000000005" class="thin"/>
+          </g>
+          <g id="fans-bottom" class="part">
+          <path d="M210 624 L1085 624 L1080 640 L215 640 Z" class="thin"/>
+          <rect x="224" y="640" width="232" height="232" rx="18"/>
+          <circle cx="340" cy="756" r="104"/>
+          <circle cx="340" cy="756" r="96" class="thin"/>
+          <path d="M362.9 756.0 Q395.7 770.2 407.3 818.7 L391.2 832.4 Q390.4 783.5 360.6 766.0 Z" class="thin"/>
+          <path d="M357.5 770.7 Q373.5 802.7 351.3 847.3 L330.1 847.5 Q360.9 809.5 349.4 776.9 Z" class="thin"/>
+          <path d="M344.0 778.5 Q335.7 813.3 289.9 833.2 L273.7 819.7 Q321.6 810.4 333.8 778.0 Z" class="thin"/>
+          <path d="M328.6 775.8 Q299.9 797.1 252.0 782.9 L248.2 762.2 Q290.9 785.9 321.1 768.9 Z" class="thin"/>
+          <path d="M318.5 763.8 Q282.8 761.7 255.3 720.1 L265.7 701.7 Q283.2 747.4 317.2 753.7 Z" class="thin"/>
+          <path d="M318.5 748.2 Q292.6 723.6 298.2 674.0 L318.0 666.7 Q302.1 712.9 324.0 739.6 Z" class="thin"/>
+          <path d="M328.6 736.2 Q324.5 700.7 360.7 666.3 L380.5 673.4 Q338.6 698.6 338.3 733.2 Z" class="thin"/>
+          <path d="M344.0 733.5 Q363.7 703.7 413.4 700.6 L424.1 718.8 Q375.9 711.1 353.4 737.4 Z" class="thin"/>
+          <path d="M357.5 741.3 Q391.8 731.1 431.9 760.8 L428.4 781.6 Q396.3 744.7 362.2 750.4 Z" class="thin"/>
+          <circle cx="340" cy="756" r="22.88"/>
+          <circle cx="340" cy="756" r="10.296" class="thin"/>
+          <rect x="484" y="640" width="232" height="232" rx="18"/>
+          <circle cx="600" cy="756" r="104"/>
+          <circle cx="600" cy="756" r="96" class="thin"/>
+          <path d="M622.9 756.0 Q655.7 770.2 667.3 818.7 L651.2 832.4 Q650.4 783.5 620.6 766.0 Z" class="thin"/>
+          <path d="M617.5 770.7 Q633.5 802.7 611.3 847.3 L590.1 847.5 Q620.9 809.5 609.4 776.9 Z" class="thin"/>
+          <path d="M604.0 778.5 Q595.7 813.3 549.9 833.2 L533.7 819.7 Q581.6 810.4 593.8 778.0 Z" class="thin"/>
+          <path d="M588.6 775.8 Q559.9 797.1 512.0 782.9 L508.2 762.2 Q550.9 785.9 581.1 768.9 Z" class="thin"/>
+          <path d="M578.5 763.8 Q542.8 761.7 515.3 720.1 L525.7 701.7 Q543.2 747.4 577.2 753.7 Z" class="thin"/>
+          <path d="M578.5 748.2 Q552.6 723.6 558.2 674.0 L578.0 666.7 Q562.1 712.9 584.0 739.6 Z" class="thin"/>
+          <path d="M588.6 736.2 Q584.5 700.7 620.7 666.3 L640.5 673.4 Q598.6 698.6 598.3 733.2 Z" class="thin"/>
+          <path d="M604.0 733.5 Q623.7 703.7 673.4 700.6 L684.1 718.8 Q635.9 711.1 613.4 737.4 Z" class="thin"/>
+          <path d="M617.5 741.3 Q651.8 731.1 691.9 760.8 L688.4 781.6 Q656.3 744.7 622.2 750.4 Z" class="thin"/>
+          <circle cx="600" cy="756" r="22.88"/>
+          <circle cx="600" cy="756" r="10.296" class="thin"/>
+          <rect x="744" y="640" width="232" height="232" rx="18"/>
+          <circle cx="860" cy="756" r="104"/>
+          <circle cx="860" cy="756" r="96" class="thin"/>
+          <path d="M882.9 756.0 Q915.7 770.2 927.3 818.7 L911.2 832.4 Q910.4 783.5 880.6 766.0 Z" class="thin"/>
+          <path d="M877.5 770.7 Q893.5 802.7 871.3 847.3 L850.1 847.5 Q880.9 809.5 869.4 776.9 Z" class="thin"/>
+          <path d="M864.0 778.5 Q855.7 813.3 809.9 833.2 L793.7 819.7 Q841.6 810.4 853.8 778.0 Z" class="thin"/>
+          <path d="M848.6 775.8 Q819.9 797.1 772.0 782.9 L768.2 762.2 Q810.9 785.9 841.1 768.9 Z" class="thin"/>
+          <path d="M838.5 763.8 Q802.8 761.7 775.3 720.1 L785.7 701.7 Q803.2 747.4 837.2 753.7 Z" class="thin"/>
+          <path d="M838.5 748.2 Q812.6 723.6 818.2 674.0 L838.0 666.7 Q822.1 712.9 844.0 739.6 Z" class="thin"/>
+          <path d="M848.6 736.2 Q844.5 700.7 880.7 666.3 L900.5 673.4 Q858.6 698.6 858.3 733.2 Z" class="thin"/>
+          <path d="M864.0 733.5 Q883.7 703.7 933.4 700.6 L944.1 718.8 Q895.9 711.1 873.4 737.4 Z" class="thin"/>
+          <path d="M877.5 741.3 Q911.8 731.1 951.9 760.8 L948.4 781.6 Q916.3 744.7 882.2 750.4 Z" class="thin"/>
+          <circle cx="860" cy="756" r="22.88"/>
+          <circle cx="860" cy="756" r="10.296" class="thin"/>
+          </g>
+          </g>
+          <g class="callout" data-for="radiator">
+            <polyline points="345,185 370,185 505,185" class="leader"/>
+            <circle cx="505" cy="185" r="4.5" class="dot"/>
+            <text x="330" y="183" text-anchor="end" class="lab">Radiator &amp; RGB bar</text>
+            <text x="330" y="203" text-anchor="end" class="sub"></text>
+          </g>
+          <g class="callout" data-for="fans-side">
+            <polyline points="345,315 370,315 431,315" class="leader"/>
+            <circle cx="431" cy="315" r="4.5" class="dot"/>
+            <text x="330" y="313" text-anchor="end" class="lab">Side intake fans</text>
+            <text x="330" y="333" text-anchor="end" class="sub"></text>
+          </g>
+          <g class="callout" data-for="cpu">
+            <polyline points="345,375 370,375 612,375" class="leader"/>
+            <circle cx="612" cy="375" r="4.5" class="dot"/>
+            <text x="330" y="373" text-anchor="end" class="lab">Processor (CPU)</text>
+            <text x="330" y="393" text-anchor="end" class="sub"></text>
+          </g>
+          <g class="callout" data-for="motherboard">
+            <polyline points="345,435 370,435 545,435" class="leader"/>
+            <circle cx="545" cy="435" r="4.5" class="dot"/>
+            <text x="330" y="433" text-anchor="end" class="lab">Motherboard</text>
+            <text x="330" y="453" text-anchor="end" class="sub"></text>
+          </g>
+          <g class="callout" data-for="gpu">
+            <polyline points="345,540 370,540 505,540" class="leader"/>
+            <circle cx="505" cy="540" r="4.5" class="dot"/>
+            <text x="330" y="538" text-anchor="end" class="lab">Graphics card</text>
+            <text x="330" y="558" text-anchor="end" class="sub"></text>
+          </g>
+          <g class="callout" data-for="fans-bottom">
+            <polyline points="345,760 370,760 640,756" class="leader"/>
+            <circle cx="640" cy="756" r="4.5" class="dot"/>
+            <text x="330" y="758" text-anchor="end" class="lab">Bottom intake fans</text>
+            <text x="330" y="778" text-anchor="end" class="sub"></text>
+          </g>
+          <g class="callout" data-for="case">
+            <polyline points="1455,125 1430,125 1410,125" class="leader"/>
+            <circle cx="1410" cy="125" r="4.5" class="dot"/>
+            <text x="1470" y="123" text-anchor="start" class="lab">Case</text>
+            <text x="1470" y="143" text-anchor="start" class="sub"></text>
+          </g>
+          <g class="callout" data-for="ram">
+            <polyline points="1455,265 1430,265 784,275" class="leader"/>
+            <circle cx="784" cy="275" r="4.5" class="dot"/>
+            <text x="1470" y="263" text-anchor="start" class="lab">Memory (RAM)</text>
+            <text x="1470" y="283" text-anchor="start" class="sub"></text>
+          </g>
+          <g class="callout" data-for="cpu-cooler">
+            <polyline points="1455,360 1430,360 728,355" class="leader"/>
+            <circle cx="728" cy="355" r="4.5" class="dot"/>
+            <text x="1470" y="358" text-anchor="start" class="lab">CPU cooler (AIO)</text>
+            <text x="1470" y="378" text-anchor="start" class="sub"></text>
+          </g>
+          <g class="callout" data-for="storage">
+            <polyline points="1455,480 1430,480 1385,480" class="leader"/>
+            <circle cx="1385" cy="480" r="4.5" class="dot"/>
+            <text x="1470" y="478" text-anchor="start" class="lab">Storage bays</text>
+            <text x="1470" y="498" text-anchor="start" class="sub"></text>
+          </g>
+          </svg>
+      </div>
+      <p class="pc-hint">Hover over a part to see where it sits in the case.</p>
+      <ul class="spec-list" id="spec-list"></ul>
+    </section>
+
+    <!-- Rest of the setup -->
+    <section id="setup" class="section container reveal">
+      <h2 class="section-title">The rest of my setup</h2>
+      <ul class="spec-list" id="setup-list"></ul>
+    </section>
+
+    <!-- Favourite games -->
+    <section id="games" class="section container reveal">
+      <h2 class="section-title">Favourite games</h2>
+      <div class="games" id="game-list"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Louis Seliger. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="gaming-data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

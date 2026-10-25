@@ -36,49 +36,100 @@
   <main id="top">
     <!-- Hero -->
     <section class="hero">
-      <div class="container">
-        <p class="eyebrow">Hi, I'm</p>
-        <h1>Louis Seliger</h1>
-        <p class="tagline">Software Developer / Support Engineer</p>
-        <div class="hero-actions">
-          <a href="#projects" class="btn btn-primary">See my work</a>
-          <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <p class="eyebrow">Hey there, I'm</p>
+          <h1>Louis Seliger<span class="wave" aria-hidden="true">👋</span></h1>
+          <p class="tagline">
+            I'm from Salzburg and help people with their IT for a living. When I'm not
+            working, I'm usually off exploring some remote corner of the world, out on my
+            motorcycle, or at home playing video games.
+          </p>
+          <div class="hero-actions">
+            <a href="#about" class="btn btn-primary">Get to know me</a>
+            <a href="travel.html" class="btn btn-ghost">See where I've been</a>
+          </div>
         </div>
+        <!-- Slideshow: the photos are listed in slideshow-data.js -->
+        <figure class="hero-polaroid" id="slideshow">
+          <div class="hero-slides">
+            <img src="images/tambopata.jpg" alt="Tambopata, Peru" class="is-active">
+          </div>
+          <figcaption>Tambopata, Peru</figcaption>
+          <span class="hero-face">
+            <img src="images/funnypic.png" alt="">
+          </span>
+        </figure>
       </div>
+    </section>
+
+    <!-- Quick facts -->
+    <section id="facts" class="container facts reveal" aria-label="Quick facts">
+      <ul class="facts-list">
+        <li><span class="fact-emoji" aria-hidden="true">📍</span><span><strong>Salzburg</strong> Austria</span></li>
+        <li><span class="fact-emoji" aria-hidden="true">🎂</span><span><strong>23</strong> years old</span></li>
+        <li><span class="fact-emoji" aria-hidden="true">🌍</span><span><strong id="country-count">12</strong> countries visited</span></li>
+        <li><span class="fact-emoji" aria-hidden="true">💻</span><span><strong>Support Engineer</strong> at FKS</span></li>
+      </ul>
     </section>
 
     <!-- About -->
     <section id="about" class="section container reveal">
-      <h2 class="section-title">About me</h2>
+      <h2 class="section-title">A bit about me</h2>
       <div class="about-grid">
         <div class="about-photo">
-            <img src="images/SuitPicture.jpg" alt="Your Name">
+            <img src="images/AboutMePic.jpg" alt="Louis Seliger standing on a rock under a bright sky">
         </div>
         <div class="about-text">
           <p>
             Hi, my name is Louis Seliger. I am a 23 year old Developer/Engineer from Salzburg,
-            austria. I gaduated from the HTBLuVA Salzburg, specializing in IT and electronics. I 
-            have worked as a software developer for Porsche Informatik and am currently employed 
-            as a Support Remote Engineer for FKS, supporting Red Bull IT with my knowledge.
+            Austria. 
           </p>
           <p>
-            Due to the fast evolving nature of AI, I have made it my goal to develop a unique 
-            skillset, working together with Claude Code, in order to deliver quality code in a
-            timely manner.
+            placeholder
           </p>
           <p>
-            Looking away from the professional background, I am quite enthusiastic when it 
-            comes to travelling the world. This is also fueled by my interest in history,
-            geography and other cultures. If I am not in a remote location around the world,
-            I enjoy riding my motorcycle or just chilling at home playing video games.
+            I am quite enthusiastic when it comes to travelling the world. This is also 
+            fueled by my interest in history, geography and other cultures. If I am not 
+            in a remote location around the world, I enjoy riding my motorcycle or just 
+            chilling at home playing video games.
           </p>
         </div>
+      </div>
+    </section>
+
+    <!-- Interests -->
+    <section id="interests" class="section container reveal">
+      <h2 class="section-title">When I'm not working</h2>
+      <div class="interests">
+        <a href="travel.html" class="interest">
+          <span class="interest-emoji" aria-hidden="true">✈️</span>
+          <h3>Travelling</h3>
+          <p>Seeing the world, the more remote the better.</p>
+          <span class="card-link">My travels →</span>
+        </a>
+        <div class="interest">
+          <span class="interest-emoji" aria-hidden="true">🏛️</span>
+          <h3>History &amp; cultures</h3>
+          <p>History, geography and other cultures are a big part of why I travel.</p>
+        </div>
+        <div class="interest">
+          <span class="interest-emoji" aria-hidden="true">🏍️</span>
+          <h3>Motorcycle</h3>
+          <p>Getting out on the bike whenever the weather plays along.</p>
+        </div>
+        <a href="gaming.html" class="interest">
+          <span class="interest-emoji" aria-hidden="true">🎮</span>
+          <h3>Video games</h3>
+          <p>Chilling at home with a good game.</p>
+          <span class="card-link">My setup →</span>
+        </a>
       </div>
     </section>
 
     <!-- Projects -->
     <section id="projects" class="section container reveal">
-      <h2 class="section-title">Current projects</h2>
+      <h2 class="section-title">Things I'm building</h2>
       <div class="cards">
         <article class="card">
           <span class="card-tag done">Done</span>
@@ -112,7 +163,7 @@
 
     <!-- Skills -->
     <section id="skills" class="section container reveal">
-      <h2 class="section-title">Skills</h2>
+      <h2 class="section-title">What I'm good at</h2>
       <div class="skills-grid">
         <div class="skill-group">
           <h3>Development</h3>
@@ -137,7 +188,7 @@
 
     <!-- Contact -->
     <section id="contact" class="section container reveal">
-      <h2 class="section-title">Contact</h2>
+      <h2 class="section-title">Say hi</h2>
       <div class="contact-grid">
         <div>
           <p class="contact-intro">
@@ -175,6 +226,8 @@
     </div>
   </footer>
 
+  <script src="travel-data.js"></script>
+  <script src="slideshow-data.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

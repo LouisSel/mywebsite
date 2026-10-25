@@ -171,18 +171,26 @@ ul {
 }
 
 /* ========== Hero ========== */
+/* A plain, friendly intro: soft colour blobs instead of a photo banner */
 .hero {
-  padding-top: 140px;
-  padding-bottom: 120px;
-  color: #fff;
-  /* Dark gradient on the left keeps the text readable over the bright windows */
+  position: relative;
+  overflow: hidden;
+  padding-top: 96px;
+  padding-bottom: 72px;
   background:
-    linear-gradient(90deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.45) 45%, rgba(0, 0, 0, 0.1) 100%),
-    url("images/RDPAPresentation.JPG") 65% 50% / cover no-repeat;
+    radial-gradient(circle at 12% 25%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 35%),
+    radial-gradient(circle at 85% 40%, rgba(236, 72, 153, 0.14), transparent 30%);
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  align-items: center;
+  gap: 56px;
 }
 
 .eyebrow {
-  color: #c7d2fe;
+  color: var(--accent);
   font-weight: 600;
   margin: 0 0 8px;
 }
@@ -194,11 +202,179 @@ ul {
   margin: 0 0 20px;
 }
 
+.wave {
+  display: inline-block;
+  margin-left: 0.2em;
+  transform-origin: 70% 70%;
+  animation: wave 2.4s ease-in-out 0.6s 2;
+}
+
+@keyframes wave {
+  0%, 60%, 100% { transform: rotate(0); }
+  10%, 30% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
+}
+
 .tagline {
   font-size: clamp(1.1rem, 2.2vw, 1.3rem);
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--muted);
   max-width: 600px;
   margin: 0 0 36px;
+}
+
+/* Travel photo as a slightly tilted polaroid, with a face "sticker" */
+.hero-polaroid {
+  position: relative;
+  margin: 0;
+  padding: 12px 12px 0;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.18);
+  transform: rotate(3deg);
+  transition: transform 0.4s;
+}
+
+.hero-polaroid:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+/* Slides are stacked on top of each other and cross-fade */
+.hero-slides {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 2px;
+  background: #e7e5e4;
+}
+
+.hero-slides img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.hero-slides img.is-active {
+  opacity: 1;
+}
+
+.hero-polaroid figcaption {
+  padding: 12px 4px 16px;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #57534e;
+}
+
+.hero-face {
+  position: absolute;
+  left: -28px;
+  bottom: 36px;
+  width: 104px;
+  height: 104px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  transform: rotate(-3deg);
+}
+
+/* Zoom in on the face in funnypic.png */
+.hero-face img {
+  position: absolute;
+  width: 169%;
+  max-width: none;
+  left: -37%;
+  top: -112%;
+}
+
+/* Quick facts */
+.facts {
+  margin-top: 8px;
+  margin-bottom: 72px;
+}
+
+.facts-list {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.facts-list li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+.facts-list strong {
+  display: block;
+  color: var(--text);
+  font-size: 1.05rem;
+}
+
+.fact-emoji {
+  font-size: 1.6rem;
+}
+
+/* Interests */
+.interests {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.interest {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.interest:hover {
+  transform: translateY(-4px) rotate(-0.5deg);
+  box-shadow: var(--shadow);
+}
+
+.interest-emoji {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 16px;
+  border-radius: 14px;
+  background: var(--accent-soft);
+  font-size: 1.6rem;
+}
+
+.interest h3 {
+  margin: 0 0 6px;
+  font-size: 1.1rem;
+}
+
+.interest p {
+  margin: 0;
+  color: var(--muted);
+  flex-grow: 1;
+}
+
+.interest .card-link {
+  margin-top: 14px;
 }
 
 .hero-actions {
@@ -301,16 +477,6 @@ ul {
   border-color: var(--text);
 }
 
-.hero .btn-ghost {
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.6);
-}
-
-.hero .btn-ghost:hover {
-  border-color: #fff;
-  background: rgba(255, 255, 255, 0.1);
-}
-
 /* ========== Sections ========== */
 .section {
   padding-top: 80px;
@@ -346,8 +512,9 @@ ul {
 
 .about-photo img {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 1;
   object-fit: cover;
+  object-position: 50% 60%;
 }
 
 .about-text p {
@@ -757,20 +924,10 @@ ul {
   overflow: hidden;
   padding: 72px 0 64px;
   color: #fff;
+  /* Same banner as the homepage hero */
   background:
-    radial-gradient(circle at 85% 20%, rgba(236, 72, 153, 0.45), transparent 45%),
-    linear-gradient(135deg, #1e1b4b 0%, #312e81 45%, #4f46e5 100%);
-}
-
-/* Soft diagonal shape across the banner, echoing the printed CV */
-.cv-hero::after {
-  content: "";
-  position: absolute;
-  inset: auto -10% -60% 35%;
-  height: 120%;
-  background: rgba(255, 255, 255, 0.06);
-  transform: rotate(-12deg);
-  pointer-events: none;
+    linear-gradient(90deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.45) 45%, rgba(0, 0, 0, 0.1) 100%),
+    url("images/RDPAPresentation.JPG") 65% 50% / cover no-repeat;
 }
 
 .cv-hero-inner {
@@ -791,12 +948,26 @@ ul {
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35);
 }
 
-.cv-portrait img {
+/* Zoom in on head and shoulders: the source photo is a tall full-body shot */
+.cv-portrait-crop {
+  position: relative;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  overflow: hidden;
   border-radius: 50%;
-  border: 4px solid #1e1b4b;
+  border: 4px solid #1c1917;
+}
+
+.cv-portrait-crop img {
+  position: absolute;
+  width: 180%;
+  max-width: none;
+  left: -45%;
+  top: -10%;
+}
+
+.cv-hero .eyebrow {
+  color: #c7d2fe;
 }
 
 .cv-hero h1 {
@@ -1038,6 +1209,9 @@ ul {
 @media (max-width: 760px) {
   .cv-hero {
     padding: 48px 0;
+    background:
+      linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+      url("images/RDPAPresentation.JPG") 65% 50% / cover no-repeat;
   }
 
   .cv-hero-inner {
@@ -1057,6 +1231,173 @@ ul {
   .cv-entry {
     padding: 18px;
   }
+}
+
+/* Gaming */
+.pc-panel {
+  width: 100%;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.pc-diagram {
+  display: block;
+  width: 100%;
+  height: auto;
+  color: var(--text);
+}
+
+.pc-diagram .pc {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.pc-diagram .pc .thin { stroke-width: 1.4; }
+.pc-diagram .pc .hair { stroke-width: 0.9; }
+
+.pc-diagram .part {
+  transition: opacity 0.2s, stroke 0.2s, filter 0.2s;
+}
+
+.pc-diagram .callout {
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.pc-diagram .leader {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.2;
+  opacity: 0.55;
+  transition: stroke 0.2s, opacity 0.2s;
+}
+
+.pc-diagram .dot { fill: currentColor; }
+
+.pc-diagram .lab {
+  fill: currentColor;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.pc-diagram .sub {
+  fill: var(--muted);
+  font-size: 15px;
+}
+
+.pc-diagram.focus .part { opacity: 0.2; }
+
+.pc-diagram.focus .part.on {
+  opacity: 1;
+  stroke: var(--accent);
+  filter: drop-shadow(0 0 6px var(--accent));
+}
+
+/* The CPU is hidden under the cooler until its label is hovered */
+.pc-diagram #cpu {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pc-diagram.show-cpu #cpu { opacity: 1; }
+.pc-diagram.show-cpu #cpu-cooler { opacity: 0; }
+
+.pc-diagram.focus .callout { opacity: 0.35; }
+.pc-diagram.focus .callout.on { opacity: 1; }
+.pc-diagram .callout.on .leader { stroke: var(--accent); opacity: 1; stroke-width: 1.8; }
+.pc-diagram .callout.on .dot,
+.pc-diagram .callout.on .lab { fill: var(--accent); }
+
+.pc-hint {
+  width: 100%;
+  margin: 12px 0 32px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.spec-list {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.spec-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 16px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.spec-list li[data-part] {
+  cursor: pointer;
+}
+
+.spec-list li[data-part]:hover,
+.spec-list li.on {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.spec-icon {
+  font-size: 1.5rem;
+  margin-bottom: 6px;
+}
+
+.spec-name {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.spec-model {
+  font-weight: 600;
+}
+
+.games {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.game {
+  padding: 24px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 14%, transparent), transparent 60%),
+    var(--surface);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.game:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.game h3 {
+  margin: 0 0 6px;
+  font-size: 1.15rem;
+}
+
+.game p {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* Labels in the drawing get too small on phones; the spec list covers it */
+@media (max-width: 760px) {
+  .pc-panel { padding: 12px; }
+  .pc-diagram .callout { display: none; }
 }
 
 /* Contact */
@@ -1158,6 +1499,7 @@ ul {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
+  .wave { animation: none; }
 }
 
 /* ========== Responsive ========== */
@@ -1195,11 +1537,28 @@ ul {
   }
 
   .hero {
-    padding-top: 96px;
-    padding-bottom: 80px;
-    background:
-      linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
-      url("images/RDPAPresentation.JPG") 65% 50% / cover no-repeat;
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .hero-inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+
+  .hero-polaroid {
+    width: min(280px, calc(100% - 32px));
+    margin: 0 auto;
+  }
+
+  .hero-face {
+    width: 84px;
+    height: 84px;
+    left: -16px;
+  }
+
+  .facts {
+    margin-bottom: 48px;
   }
 
   .section {

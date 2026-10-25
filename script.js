@@ -106,6 +106,130 @@ if (lightbox) {
   });
 }
 
+// ========== Home: countries visited ==========
+// Counted from the flags in travel-data.js, so it updates with each new holiday.
+const countryCount = document.getElementById("country-count");
+
+if (countryCount && typeof holidays !== "undefined") {
+  countryCount.textContent = new Set(holidays.flatMap((holiday) => holiday.flag)).size;
+}
+
+// ========== Home: photo slideshow ==========
+// Shows the photos from slideshow-data.js in random order. Each photo is only
+// downloaded shortly before it's shown, so the page stays fast.
+const slideshow = document.getElementById("slideshow");
+const SLIDE_INTERVAL = 20000; // 20 seconds
+
+if (slideshow && typeof slides !== "undefined" && slides.length > 0) {
+  const frame = slideshow.querySelector(".hero-slides");
+  const caption = slideshow.querySelector("figcaption");
+
+  const order = [...slides];
+  for (let i = order.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [order[i], order[j]] = [order[j], order[i]];
+  }
+
+  frame.innerHTML = "";
+  const images = order.map((slide) => {
+    const img = document.createElement("img");
+    img.alt = `${slide.place}, ${slide.country}`;
+    img.dataset.src = slide.src;
+    frame.append(img);
+    return img;
+  });
+
+  const load = (img) => {
+    if (!img.getAttribute("src")) img.src = img.dataset.src;
+  };
+
+  let current = 0;
+  const show = (index) => {
+    images[current].classList.remove("is-active");
+    current = index;
+    load(images[current]);
+    load(images[(current + 1) % images.length]); // preload the next one
+    images[current].classList.add("is-active");
+    caption.textContent = images[current].alt;
+  };
+
+  show(0);
+  if (images.length > 1) {
+    setInterval(() => show((current + 1) % images.length), SLIDE_INTERVAL);
+  }
+}
+
+// ========== Gaming: PC diagram, setup and games ==========
+// Built from the lists in gaming-data.js. Hovering a part in the drawing, its
+// label or its row in the spec list highlights that part everywhere.
+const pcDiagram = document.getElementById("pc-diagram");
+
+if (pcDiagram && typeof pcParts !== "undefined") {
+  const specList = document.getElementById("spec-list");
+
+  pcDiagram.querySelectorAll(".callout").forEach((callout) => {
+    const part = pcParts.find((p) => p.part === callout.dataset.for);
+    callout.querySelector(".sub").textContent = part ? part.model : "";
+  });
+
+  specList.innerHTML = pcParts
+    .map((p) => `
+      <li${p.part ? ` data-part="${escapeHtml(p.part)}"` : ""}>
+        <span class="spec-name">${escapeHtml(p.name)}</span>
+        <span class="spec-model">${escapeHtml(p.model)}</span>
+      </li>`)
+    .join("");
+
+  const highlight = (id) => {
+    pcDiagram.classList.add("focus");
+    pcDiagram.classList.toggle("show-cpu", id === "cpu"); // the cooler gets out of the way
+    pcDiagram.querySelectorAll(".part, .callout").forEach((el) => {
+      el.classList.toggle("on", el.id === id || el.dataset.for === id);
+    });
+    specList.querySelectorAll("li").forEach((li) => li.classList.toggle("on", li.dataset.part === id));
+  };
+  const clear = () => {
+    pcDiagram.classList.remove("focus", "show-cpu");
+    document.querySelectorAll("#pc .on").forEach((el) => el.classList.remove("on"));
+  };
+
+  const hoverables = [
+    ...[...pcDiagram.querySelectorAll(".part")].map((el) => [el, el.id]),
+    ...[...pcDiagram.querySelectorAll(".callout")].map((el) => [el, el.dataset.for]),
+    ...[...specList.querySelectorAll("li[data-part]")].map((el) => [el, el.dataset.part]),
+  ];
+  hoverables.forEach(([el, id]) => {
+    el.addEventListener("mouseenter", () => highlight(id));
+    el.addEventListener("mouseleave", clear);
+    el.addEventListener("click", () => highlight(id)); // tap on touch screens
+  });
+}
+
+const setupList = document.getElementById("setup-list");
+
+if (setupList && typeof setup !== "undefined") {
+  setupList.innerHTML = setup
+    .map((item) => `
+      <li>
+        <span class="spec-icon" aria-hidden="true">${escapeHtml(item.icon || "")}</span>
+        <span class="spec-name">${escapeHtml(item.name)}</span>
+        <span class="spec-model">${escapeHtml(item.model)}</span>
+      </li>`)
+    .join("");
+}
+
+const gameList = document.getElementById("game-list");
+
+if (gameList && typeof favouriteGames !== "undefined") {
+  gameList.innerHTML = favouriteGames
+    .map((game) => `
+      <article class="game">
+        <h3>${escapeHtml(game.title)}</h3>
+        ${game.note ? `<p>${escapeHtml(game.note)}</p>` : ""}
+      </article>`)
+    .join("");
+}
+
 // ========== Travel: holiday list ==========
 // Built from the `holidays` list in travel-data.js.
 const holidayList = document.getElementById("holiday-list");

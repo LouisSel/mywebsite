@@ -171,7 +171,7 @@ const holidays = [
     year: "2022",
     focusZoom: 13,
     stops: [
-      { name: "Bray",                            lat: 53.1937, lng: -6.1061, note: "", photos: [] },
+      { name: "Bray",                              lat: 53.1937, lng: -6.1061, note: "", photos: [] },
       { name: "Temple Bar",                        lat: 53.3449, lng: -6.2668, note: "", photos: [] },
       { name: "Guiness Brewery",                   lat: 53.3417, lng: -6.2864, note: "", photos: [] },
       { name: "Shelbourne Park Greyhound Stadium", lat: 53.3411, lng: -6.2305, note: "", photos: [] },
