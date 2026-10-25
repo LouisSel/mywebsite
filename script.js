@@ -159,63 +159,117 @@ if (slideshow && typeof slides !== "undefined" && slides.length > 0) {
   }
 }
 
-// ========== Gaming: PC diagram, setup and games ==========
-// Built from the lists in gaming-data.js. Hovering a part in the drawing, its
-// label or its row in the spec list highlights that part everywhere.
-const pcDiagram = document.getElementById("pc-diagram");
-
-if (pcDiagram && typeof pcParts !== "undefined") {
-  const specList = document.getElementById("spec-list");
-
-  pcDiagram.querySelectorAll(".callout").forEach((callout) => {
-    const part = pcParts.find((p) => p.part === callout.dataset.for);
-    callout.querySelector(".sub").textContent = part ? part.model : "";
+// ========== Gaming: setup and PC drawings, games ==========
+// Built from the lists in gaming-data.js. Hovering something in a drawing,
+// its label or its row in the list below highlights it everywhere.
+// Returns a function that clears the highlight.
+function linkDiagram(diagram, list, items) {
+  diagram.querySelectorAll(".callout").forEach((callout) => {
+    const item = items.find((p) => p.part === callout.dataset.for);
+    callout.querySelector(".sub").textContent = item ? item.model : "";
   });
 
-  specList.innerHTML = pcParts
+  list.innerHTML = items
     .map((p) => `
       <li${p.part ? ` data-part="${escapeHtml(p.part)}"` : ""}>
+        ${p.icon ? `<span class="spec-icon" aria-hidden="true">${escapeHtml(p.icon)}</span>` : ""}
         <span class="spec-name">${escapeHtml(p.name)}</span>
         <span class="spec-model">${escapeHtml(p.model)}</span>
       </li>`)
     .join("");
 
   const highlight = (id) => {
-    pcDiagram.classList.add("focus");
-    pcDiagram.classList.toggle("show-cpu", id === "cpu"); // the cooler gets out of the way
-    pcDiagram.querySelectorAll(".part, .callout").forEach((el) => {
+    diagram.classList.add("focus");
+    diagram.classList.toggle("show-cpu", id === "cpu"); // the cooler gets out of the way
+    diagram.querySelectorAll(".part, .callout").forEach((el) => {
       el.classList.toggle("on", el.id === id || el.dataset.for === id);
     });
-    specList.querySelectorAll("li").forEach((li) => li.classList.toggle("on", li.dataset.part === id));
+    list.querySelectorAll("li").forEach((li) => li.classList.toggle("on", li.dataset.part === id));
   };
   const clear = () => {
-    pcDiagram.classList.remove("focus", "show-cpu");
-    document.querySelectorAll("#pc .on").forEach((el) => el.classList.remove("on"));
+    diagram.classList.remove("focus", "show-cpu");
+    [diagram, list].forEach((el) => el.querySelectorAll(".on").forEach((on) => on.classList.remove("on")));
   };
 
   const hoverables = [
-    ...[...pcDiagram.querySelectorAll(".part")].map((el) => [el, el.id]),
-    ...[...pcDiagram.querySelectorAll(".callout")].map((el) => [el, el.dataset.for]),
-    ...[...specList.querySelectorAll("li[data-part]")].map((el) => [el, el.dataset.part]),
+    ...[...diagram.querySelectorAll(".part")].map((el) => [el, el.id]),
+    ...[...diagram.querySelectorAll(".callout")].map((el) => [el, el.dataset.for]),
+    ...[...list.querySelectorAll("li[data-part]")].map((el) => [el, el.dataset.part]),
   ];
   hoverables.forEach(([el, id]) => {
     el.addEventListener("mouseenter", () => highlight(id));
     el.addEventListener("mouseleave", clear);
     el.addEventListener("click", () => highlight(id)); // tap on touch screens
   });
+  return clear;
 }
 
-const setupList = document.getElementById("setup-list");
+const setupPanel = document.getElementById("setup-panel");
 
-if (setupList && typeof setup !== "undefined") {
-  setupList.innerHTML = setup
-    .map((item) => `
-      <li>
-        <span class="spec-icon" aria-hidden="true">${escapeHtml(item.icon || "")}</span>
-        <span class="spec-name">${escapeHtml(item.name)}</span>
-        <span class="spec-model">${escapeHtml(item.model)}</span>
-      </li>`)
-    .join("");
+if (setupPanel && typeof setup !== "undefined" && typeof pcParts !== "undefined") {
+  const setupDiagram = document.getElementById("setup-diagram");
+  const pcDiagram = document.getElementById("pc-diagram");
+  const setupList = document.getElementById("setup-list");
+  const clearSetup = linkDiagram(setupDiagram, setupList, setup);
+  const clearPc = linkDiagram(pcDiagram, document.getElementById("spec-list"), pcParts);
+
+  // Clicking the PC slides the rest of the setup away and zooms in until the
+  // PC's outline sits exactly on the case outline of the PC drawing, which
+  // then fades in. Both drawings fill the same box, so the zoom is measured
+  // once, as a share of that box, and fits any screen size.
+  const pc = document.getElementById("pc");
+  const backButton = document.getElementById("diagram-back");
+
+  const measureZoom = () => {
+    const box = setupDiagram.getBoundingClientRect();
+    const from = pc.querySelector("rect").getBoundingClientRect(); // the case outline
+    const to = pcDiagram.querySelector("#case rect").getBoundingClientRect();
+    const scale = to.width / from.width;
+    const shift = (target, start, origin, size) => `${((target - origin - scale * (start - origin)) / size) * 100}%`;
+    setupDiagram.style.setProperty("--zoom-scale", scale);
+    setupDiagram.style.setProperty("--zoom-x", shift(to.left, from.left, box.left, box.width));
+    setupDiagram.style.setProperty("--zoom-y", shift(to.top, from.top, box.top, box.height));
+  };
+
+  const showPc = (show) => {
+    setupPanel.classList.toggle("zoomed", show);
+    document.getElementById("setup-info").hidden = show;
+    document.getElementById("pc-info").hidden = !show;
+  };
+
+  // Focus only moves along for keyboard users. After a mouse click it would
+  // leave the PC outlined in blue once you're back at the desk.
+  const zoomIn = (byKeyboard) => {
+    if (setupPanel.classList.contains("zoomed")) return;
+    if (!setupDiagram.style.getPropertyValue("--zoom-scale")) measureZoom();
+    clearSetup();
+    showPc(true);
+    if (byKeyboard) backButton.focus({ preventScroll: true });
+    else pc.blur(); // clicking the PC focused it
+  };
+
+  const zoomOut = (byKeyboard) => {
+    if (!setupPanel.classList.contains("zoomed")) return;
+    clearSetup();
+    clearPc();
+    showPc(false);
+    if (byKeyboard) pc.focus({ preventScroll: true });
+  };
+
+  [pc, setupDiagram.querySelector('.callout[data-for="pc"]'), setupList.querySelector('[data-part="pc"]')]
+    .filter(Boolean) // the PC's row is missing if it's taken out of gaming-data.js
+    .forEach((el) => el.addEventListener("click", () => zoomIn(false)));
+  pc.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      zoomIn(true);
+    }
+  });
+  // event.detail is 0 when the button was pressed with Enter or Space
+  backButton.addEventListener("click", (event) => zoomOut(event.detail === 0));
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") zoomOut(document.activeElement === backButton);
+  });
 }
 
 const gameList = document.getElementById("game-list");

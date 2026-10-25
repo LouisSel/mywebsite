@@ -1,7 +1,7 @@
 // ========== Gaming page: PC, setup and favourite games ==========
 // Edit the lists below; the gaming page builds itself from them.
 //
-// pcParts: the parts inside the PC.
+// pcParts: the parts inside the PC, shown after clicking the PC in the setup.
 //   part   which piece of the drawing lights up on hover. Must be one of:
 //          "case", "fans-side", "radiator", "motherboard", "storage", "ram",
 //          "cpu", "cpu-cooler", "gpu", "fans-bottom". Leave it out for parts
@@ -24,14 +24,25 @@ const pcParts = [
   { part: "fans-bottom", name: "Bottom intake fans", model: "Lian Li Uni Fan TL Wireless 140 Reverse" },
 ];
 
-// setup: everything around the PC.
+// setup: everything on and around the desk.
+//   part   which piece of the setup drawing lights up on hover. Must be one of:
+//          "pc", "monitor", "side-monitor", "keyboard", "mouse", "headset",
+//          "mic", "webcam", "light", "stream-deck", "controller". Leave it out
+//          for things that aren't in the drawing (e.g. the chair). Clicking
+//          the PC zooms into the drawing of the PC above.
 //   icon   an emoji shown on the card
 const setup = [
-  { icon: "🖥️", name: "Monitor", model: "Add model" },
-  { icon: "⌨️", name: "Keyboard", model: "Add model" },
-  { icon: "🖱️", name: "Mouse", model: "Add model" },
-  { icon: "🎧", name: "Headset", model: "Add model" },
-  { icon: "🪑", name: "Chair", model: "Add model" },
+  { part: "pc", icon: "⚙️", name: "PC", model: "Click to open specifications" },
+  { part: "monitor", icon: "🖥️", name: "Main monitor", model: "MSI MAG 273QP QD-OLED X24 26.5 Inch WQHD Gaming Monitor" },
+  { part: "side-monitor", icon: "🖥️", name: "Side monitor", model: "Lenovo ThinkVision P27Q-40 27 Zoll WQHD" },
+  { part: "keyboard", icon: "⌨️", name: "Keyboard", model: "Rainy 75 Keyboard Electro White" },
+  { part: "mouse", icon: "🖱️", name: "Mouse", model: "Logitech G PRO X2 SUPERSTRIKE LIGHTSPEED" },
+  { part: "headset", icon: "🎧", name: "Headset", model: "Beyerdynamics DT990 Pro Limited Edition" },
+  { part: "mic", icon: "🎙️", name: "Microphone", model: "Trust GXT252" },
+  { part: "webcam", icon: "📹", name: "Webcam", model: "Logitech Brio 4K" },
+  { part: "light", icon: "💡", name: "Streaming light", model: "Logitech Litra Glow" },
+  { part: "stream-deck", icon: "🎛️", name: "Stream Deck", model: "Elgato Stream Deck MK.2" },
+  { part: "controller", icon: "🎮", name: "Controller", model: "GameSir G7 Pro" },
 ];
 
 // favouriteGames: shown as cards.
