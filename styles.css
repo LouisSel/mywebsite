@@ -751,6 +751,314 @@ ul {
   font-size: 0.9rem;
 }
 
+/* CV */
+.cv-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 72px 0 64px;
+  color: #fff;
+  background:
+    radial-gradient(circle at 85% 20%, rgba(236, 72, 153, 0.45), transparent 45%),
+    linear-gradient(135deg, #1e1b4b 0%, #312e81 45%, #4f46e5 100%);
+}
+
+/* Soft diagonal shape across the banner, echoing the printed CV */
+.cv-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto -10% -60% 35%;
+  height: 120%;
+  background: rgba(255, 255, 255, 0.06);
+  transform: rotate(-12deg);
+  pointer-events: none;
+}
+
+.cv-hero-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 48px;
+}
+
+.cv-portrait {
+  width: 200px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  padding: 6px;
+  background: linear-gradient(135deg, #c7d2fe, #ec4899);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35);
+}
+
+.cv-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #1e1b4b;
+}
+
+.cv-hero h1 {
+  font-size: clamp(2.4rem, 6vw, 3.8rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin: 0 0 10px;
+}
+
+.cv-role {
+  margin: 0 0 24px;
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.cv-hero-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cv-hero-facts li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.cv-page svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cv-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 48px;
+  align-items: start;
+  margin-top: 64px;
+  margin-bottom: 80px;
+}
+
+.cv-main {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  min-width: 0;
+}
+
+.cv-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.4rem;
+  letter-spacing: -0.02em;
+  margin: 0 0 24px;
+}
+
+.cv-heading::before {
+  content: "";
+  width: 6px;
+  height: 22px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, var(--accent), #ec4899);
+}
+
+.cv-profile {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--muted);
+}
+
+/* Timeline: a line down the left with a dot per entry */
+.cv-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 28px;
+  position: relative;
+}
+
+.cv-timeline::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--border);
+}
+
+.cv-entry {
+  position: relative;
+  margin-bottom: 16px;
+  padding: 20px 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+
+.cv-entry:hover {
+  transform: translateX(4px);
+  box-shadow: var(--shadow);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+}
+
+.cv-entry::before {
+  content: "";
+  position: absolute;
+  left: -28px;
+  top: 26px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 3px solid var(--accent);
+}
+
+.cv-entry.is-current {
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+}
+
+.cv-entry.is-current::before {
+  background: var(--accent);
+  box-shadow: 0 0 0 5px var(--accent-soft);
+}
+
+.cv-entry-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin-bottom: 4px;
+}
+
+.cv-entry h3 {
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.cv-entry p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.cv-date {
+  flex-shrink: 0;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--accent);
+}
+
+.cv-badge {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--done);
+  background: var(--done-soft);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.cv-side {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: sticky;
+  top: 88px;
+}
+
+.cv-card {
+  padding: 28px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.cv-card .cv-heading {
+  font-size: 1.15rem;
+  margin-bottom: 18px;
+}
+
+.cv-card .chips li {
+  background: var(--accent-soft);
+  border-color: transparent;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.cv-info li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 14px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  overflow-wrap: anywhere;
+}
+
+.cv-info li:last-child {
+  margin-bottom: 0;
+}
+
+.cv-info svg {
+  margin-top: 3px;
+  color: var(--accent);
+}
+
+.cv-info a:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 860px) {
+  .cv-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cv-side {
+    position: static;
+  }
+}
+
+@media (max-width: 760px) {
+  .cv-hero {
+    padding: 48px 0;
+  }
+
+  .cv-hero-inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .cv-portrait {
+    width: 150px;
+  }
+
+  .cv-layout {
+    margin-top: 40px;
+    margin-bottom: 56px;
+  }
+
+  .cv-entry {
+    padding: 18px;
+  }
+}
+
 /* Contact */
 .contact-grid {
   display: grid;
